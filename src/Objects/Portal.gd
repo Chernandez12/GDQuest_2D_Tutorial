@@ -16,7 +16,5 @@ func teleport() -> void:
 	yield(anim_player, "animation_finished")
 	get_tree().change_scene_to(next_scene)
 
-# This is a test comment
-
 
 
