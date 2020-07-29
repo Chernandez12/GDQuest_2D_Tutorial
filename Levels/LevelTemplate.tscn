@@ -66,6 +66,7 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = -1
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
