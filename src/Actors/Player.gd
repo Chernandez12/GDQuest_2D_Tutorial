@@ -6,7 +6,11 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-	queue_free()
+	global.lives -= 1
+
+	get_parent().get_node("CanvasLayer/HUD2/Lives").update_counter(global.lives)
+	if global.lives == 0:
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
