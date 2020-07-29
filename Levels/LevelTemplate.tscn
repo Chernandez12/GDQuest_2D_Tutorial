@@ -142,17 +142,17 @@ position = Vector2( 2268, 554 )
 [node name="Coin7" parent="Coins" instance=ExtResource( 5 )]
 position = Vector2( 2409, 557 )
 
-[node name="Node" type="Node" parent="."]
+[node name="Enemies" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="Enemy" parent="Node" instance=ExtResource( 6 )]
+[node name="Enemy" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 1458, 557 )
 
-[node name="Enemy2" parent="Node" instance=ExtResource( 6 )]
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 2677, 710 )
 
 [node name="Portal2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 3559, 510 )
+position = Vector2( 3120, 351.5 )
 next_scene = ExtResource( 8 )
 
 [editable path="Player"]
