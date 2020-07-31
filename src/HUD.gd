@@ -1,4 +1,5 @@
 extends RichTextLabel
 
 func update_counter(val):
-	text = str(val)
+	#text = str(val)
+	text = val
