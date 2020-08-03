@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/HUD.gd" type="Script" id=2]
@@ -6,9 +6,8 @@
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Objects/Flame.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Levels/Level02.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Levels/Level02.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -63,6 +62,81 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 2/navigation_offset = Vector2( 0, 0 )
 2/shapes = [  ]
 2/z_index = 0
+
+[sub_resource type="CanvasItemMaterial" id=13]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.133333, 1 )
+colors = PoolColorArray( 0.995202, 1, 0.113281, 1, 0.395962, 0.820312, 0.00961304, 0.543065, 0.0823529, 0.235294, 0.00392157, 0.0666667 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.4736 ), -2.00503, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0.016835, 0.98972 ), 0.0, 0.404544, 0, 0, Vector2( 1, 0.34732 ), -1.0592, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+trail_size_modifier = SubResource( 10 )
+emission_shape = 1
+emission_sphere_radius = 10.31
+flag_disable_z = true
+spread = 10.34
+gravity = Vector3( 0, 0, 1000 )
+initial_velocity = 84.48
+initial_velocity_random = 1.0
+angular_velocity = -411.38
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 13.51
+linear_accel_random = 0.92
+angle = 45.0
+scale = 12.5
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+trail_size_modifier = SubResource( 10 )
+emission_shape = 1
+emission_sphere_radius = 10.31
+flag_disable_z = true
+spread = 10.34
+gravity = Vector3( 0, 0, 1000 )
+initial_velocity = 84.48
+initial_velocity_random = 1.0
+angular_velocity = -411.38
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 13.51
+linear_accel_random = 0.92
+angle = 45.0
+scale = 12.5
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
+
+[sub_resource type="Environment" id=14]
+background_mode = 4
+fog_enabled = true
+fog_color = Color( 0.14902, 0.333333, 0.517647, 1 )
+auto_exposure_scale = 0.21
+auto_exposure_min_luma = 0.0
+auto_exposure_max_luma = 16.0
+glow_enabled = true
+glow_intensity = 1.01
+glow_strength = 1.08
+glow_bloom = 0.01
+glow_blend_mode = 0
 
 [node name="LevelTemplate" type="Node2D"]
 position = Vector2( -400, 0 )
@@ -120,7 +194,6 @@ rotation = -2.02633
 texture = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -100
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
@@ -169,6 +242,7 @@ tile_data = PoolIntArray( 0, 0, 0, 36, 536870912, 0, 65536, 0, 0, 65572, 5368709
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
+material = SubResource( 13 )
 position = Vector2( 609, 300 )
 
 [node name="Camera2D" parent="Player" index="2"]
@@ -209,11 +283,27 @@ position = Vector2( 2677, 710 )
 
 [node name="Effects" type="Node" parent="."]
 
-[node name="Flame" parent="Effects" instance=ExtResource( 7 )]
+[node name="Flame" type="Particles2D" parent="Effects"]
 position = Vector2( 760, 450 )
+rotation = -1.5708
+amount = 100
+lifetime = 1.5
+speed_scale = 1.5
+process_material = SubResource( 11 )
 
-[node name="Portal2D" parent="." instance=ExtResource( 8 )]
-position = Vector2( 3140, 300 )
-next_scene = ExtResource( 9 )
+[node name="Flame2" type="Particles2D" parent="Effects"]
+position = Vector2( 900, 537.5 )
+rotation = -1.5708
+amount = 100
+lifetime = 1.5
+speed_scale = 1.5
+process_material = SubResource( 12 )
+
+[node name="Portal2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3160, 506 )
+next_scene = ExtResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 14 )
 
 [editable path="Player"]

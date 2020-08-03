@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 41, 43 )
+extents = Vector2( 41, 42 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 40, 8 )
+extents = Vector2( 45.424, 46.6935 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
@@ -19,7 +19,7 @@ position = Vector2( 0, -48 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, -48 )
+position = Vector2( 1, -40.0768 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -41,7 +41,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2( -1, -9 )
+position = Vector2( -0.724945, -42.1743 )
 shape = SubResource( 2 )
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]

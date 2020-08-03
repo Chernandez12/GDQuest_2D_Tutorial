@@ -9,8 +9,9 @@ func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	global.lives -= 1
 
 	get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
-	if global.lives == 0:
-		queue_free()
+	queue_free()
+	#if global.lives == 0:
+	#	queue_free()
 
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0

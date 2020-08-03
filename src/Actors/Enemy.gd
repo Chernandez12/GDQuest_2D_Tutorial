@@ -11,9 +11,11 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 		return
 	health -= 1
 	print(health)
-	if health == 0:
-		get_node("CollisionShape2D").disabled = true
-		queue_free()
+	get_node("CollisionShape2D").disabled = true
+	queue_free()
+	#if health == 0:
+	#	get_node("CollisionShape2D").disabled = true
+	#	queue_free()
 
 func _physics_process(delta: float) -> void:
 	_velocity.y += gravity * delta
