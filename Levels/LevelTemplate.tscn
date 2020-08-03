@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/HUD.gd" type="Script" id=2]
@@ -15,19 +15,19 @@
 flags = 4
 load_path = "res://.import/278a3d19175e0856d065ee439e0cb448.png-b5fa31cf859ed300f772b45528f95874.stex"
 
-[sub_resource type="ShaderMaterial" id=15]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
 shader_param/color = Vector3( 1, 1, 1 )
 shader_param/OCTAVES = 4
 shader_param/fog_speed = 0.2
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
-
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
+
+[sub_resource type="TileSet" id=5]
 0/name = "tileset.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -40,13 +40,13 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 2 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -71,50 +71,30 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 2/shapes = [  ]
 2/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=13]
+[sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0, 0.133333, 1 )
 colors = PoolColorArray( 0.995202, 1, 0.113281, 1, 0.395962, 0.820312, 0.00961304, 0.543065, 0.0823529, 0.235294, 0.00392157, 0.0666667 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
-
-[sub_resource type="Curve" id=7]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.4736 ), -2.00503, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=8]
-curve = SubResource( 7 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
 [sub_resource type="Curve" id=9]
-_data = [ Vector2( 0.016835, 0.98972 ), 0.0, 0.404544, 0, 0, Vector2( 1, 0.34732 ), -1.0592, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.4736 ), -2.00503, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=10]
 curve = SubResource( 9 )
 
-[sub_resource type="ParticlesMaterial" id=11]
-trail_size_modifier = SubResource( 10 )
-emission_shape = 1
-emission_sphere_radius = 10.31
-flag_disable_z = true
-spread = 10.34
-gravity = Vector3( 0, 0, 1000 )
-initial_velocity = 84.48
-initial_velocity_random = 1.0
-angular_velocity = -411.38
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 13.51
-linear_accel_random = 0.92
-angle = 45.0
-scale = 12.5
-scale_curve = SubResource( 8 )
-color_ramp = SubResource( 6 )
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0.016835, 0.98972 ), 0.0, 0.404544, 0, 0, Vector2( 1, 0.34732 ), -1.0592, 0.0, 0, 0 ]
 
-[sub_resource type="ParticlesMaterial" id=12]
-trail_size_modifier = SubResource( 10 )
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+trail_size_modifier = SubResource( 12 )
 emission_shape = 1
 emission_sphere_radius = 10.31
 flag_disable_z = true
@@ -130,8 +110,8 @@ linear_accel = 13.51
 linear_accel_random = 0.92
 angle = 45.0
 scale = 12.5
-scale_curve = SubResource( 8 )
-color_ramp = SubResource( 6 )
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
 
 [node name="LevelTemplate" type="Node2D"]
 position = Vector2( -400, 0 )
@@ -189,6 +169,7 @@ rotation = -2.02633
 texture = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = -100
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
@@ -227,14 +208,14 @@ text = "5"
 script = ExtResource( 2 )
 
 [node name="fog" type="Sprite" parent="CanvasLayer"]
-material = SubResource( 15 )
+material = SubResource( 2 )
 position = Vector2( 570, 300 )
 scale = Vector2( 20, 20 )
 texture = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 400, 0 )
-tile_set = SubResource( 4 )
+tile_set = SubResource( 5 )
 cell_size = Vector2( 80, 80 )
 collision_layer = 8
 collision_mask = 0
@@ -243,13 +224,14 @@ tile_data = PoolIntArray( 0, 0, 0, 36, 536870912, 0, 65536, 0, 0, 65572, 5368709
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
-material = SubResource( 13 )
+material = SubResource( 6 )
 position = Vector2( 609, 300 )
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_right = 2963
 
 [node name="Coins" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Coin" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 526, 91 )
@@ -282,6 +264,7 @@ position = Vector2( 1458, 557 )
 position = Vector2( 2677, 710 )
 
 [node name="Effects" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Flame" type="Particles2D" parent="Effects"]
 position = Vector2( 760, 450 )
@@ -289,15 +272,7 @@ rotation = -1.5708
 amount = 100
 lifetime = 1.5
 speed_scale = 1.5
-process_material = SubResource( 11 )
-
-[node name="Flame2" type="Particles2D" parent="Effects"]
-position = Vector2( 900, 537.5 )
-rotation = -1.5708
-amount = 100
-lifetime = 1.5
-speed_scale = 1.5
-process_material = SubResource( 12 )
+process_material = SubResource( 13 )
 
 [node name="Portal2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3160, 506 )
