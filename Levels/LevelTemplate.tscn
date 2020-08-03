@@ -1,17 +1,25 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/HUD.gd" type="Script" id=2]
-[ext_resource path="res://assets/tileset.png" type="Texture" id=3]
-[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Levels/Level02.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Shaders/fog.shader" type="Shader" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://assets/tileset.png" type="Texture" id=5]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Levels/Level02.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/278a3d19175e0856d065ee439e0cb448.png-b5fa31cf859ed300f772b45528f95874.stex"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 3 )
+shader_param/color = Vector3( 1, 1, 1 )
+shader_param/OCTAVES = 4
+shader_param/fog_speed = 0.2
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
@@ -21,7 +29,7 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 
 [sub_resource type="TileSet" id=4]
 0/name = "tileset.png 0"
-0/texture = ExtResource( 3 )
+0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 160, 80 )
@@ -43,7 +51,7 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 } ]
 0/z_index = 0
 1/name = "tileset.png 1"
-1/texture = ExtResource( 3 )
+1/texture = ExtResource( 5 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 80, 160, 80, 80 )
@@ -53,7 +61,7 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 1/shapes = [  ]
 1/z_index = 0
 2/name = "tileset.png 2"
-2/texture = ExtResource( 3 )
+2/texture = ExtResource( 5 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 160, 160, 80 )
@@ -124,19 +132,6 @@ angle = 45.0
 scale = 12.5
 scale_curve = SubResource( 8 )
 color_ramp = SubResource( 6 )
-
-[sub_resource type="Environment" id=14]
-background_mode = 4
-fog_enabled = true
-fog_color = Color( 0.14902, 0.333333, 0.517647, 1 )
-auto_exposure_scale = 0.21
-auto_exposure_min_luma = 0.0
-auto_exposure_max_luma = 16.0
-glow_enabled = true
-glow_intensity = 1.01
-glow_strength = 1.08
-glow_bloom = 0.01
-glow_blend_mode = 0
 
 [node name="LevelTemplate" type="Node2D"]
 position = Vector2( -400, 0 )
@@ -231,6 +226,12 @@ margin_bottom = 20.0
 text = "5"
 script = ExtResource( 2 )
 
+[node name="fog" type="Sprite" parent="CanvasLayer"]
+material = SubResource( 15 )
+position = Vector2( 570, 300 )
+scale = Vector2( 20, 20 )
+texture = ExtResource( 4 )
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 400, 0 )
 tile_set = SubResource( 4 )
@@ -240,7 +241,7 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 36, 536870912, 0, 65536, 0, 0, 65572, 536870912, 0, 131073, 536870912, 0, 131079, 536870912, 0, 131080, 536870912, 0, 131108, 536870912, 0, 196608, 0, 0, 196644, 536870912, 0, 262144, 0, 0, 262180, 536870912, 0, 327681, 536870912, 0, 327682, 536870912, 0, 327684, 536870912, 0, 327685, 536870912, 0, 327687, 536870912, 0, 327716, 536870912, 0, 393217, 536870912, 0, 393218, 536870912, 0, 393219, 536870912, 0, 393220, 536870912, 0, 393221, 536870912, 0, 393222, 536870912, 0, 393223, 536870912, 0, 393236, 536870912, 0, 393237, 536870912, 0, 393252, 536870912, 0, 458753, 536870912, 0, 458754, 536870912, 0, 458755, 536870912, 0, 458756, 536870912, 0, 458757, 536870912, 0, 458758, 536870912, 0, 458759, 536870912, 0, 458760, 536870912, 0, 458761, 536870912, 0, 458762, 536870912, 0, 458763, 536870912, 0, 458764, 536870912, 0, 458766, 536870912, 0, 458768, 536870912, 0, 458769, 536870912, 0, 458770, 536870912, 0, 458771, 536870912, 0, 458772, 536870912, 0, 458773, 536870912, 0, 458774, 536870912, 0, 458788, 536870912, 0, 524289, 536870912, 0, 524290, 536870912, 0, 524291, 536870912, 0, 524292, 536870912, 0, 524293, 536870912, 0, 524294, 536870912, 0, 524295, 536870912, 0, 524296, 536870912, 0, 524297, 536870912, 0, 524298, 536870912, 0, 524299, 536870912, 0, 524300, 536870912, 0, 524301, 536870912, 0, 524302, 536870912, 0, 524303, 536870912, 0, 524304, 536870912, 0, 524305, 536870912, 0, 524306, 536870912, 0, 524307, 536870912, 0, 524308, 536870912, 0, 524309, 536870912, 0, 524310, 536870912, 0, 524315, 536870912, 0, 524316, 536870912, 0, 524318, 536870912, 0, 524324, 536870912, 0, 589825, 536870912, 0, 589826, 536870912, 0, 589827, 536870912, 0, 589828, 536870912, 0, 589829, 536870912, 0, 589830, 536870912, 0, 589831, 536870912, 0, 589832, 536870912, 0, 589833, 536870912, 0, 589834, 536870912, 0, 589835, 536870912, 0, 589836, 536870912, 0, 589837, 536870912, 0, 589838, 536870912, 0, 589839, 536870912, 0, 589840, 536870912, 0, 589841, 536870912, 0, 589842, 536870912, 0, 589843, 536870912, 0, 589844, 536870912, 0, 589845, 536870912, 0, 589846, 536870912, 0, 589847, 536870912, 0, 589848, 536870912, 0, 589849, 536870912, 0, 589850, 536870912, 0, 589851, 536870912, 0, 589852, 536870912, 0, 589853, 536870912, 0, 589854, 536870912, 0, 589855, 536870912, 0, 589856, 536870912, 0, 589858, 536870912, 0, 589860, 536870912, 0, 655379, 536870912, 0, 655380, 536870912, 0, 655381, 536870912, 0, 655382, 536870912, 0, 655384, 536870912, 0, 655385, 536870912, 0, 655386, 536870912, 0, 655387, 536870912, 0, 655388, 536870912, 0, 655389, 536870912, 0, 655390, 536870912, 0, 655391, 536870912, 0, 655392, 536870912, 0, 655393, 536870912, 0, 655394, 536870912, 0, 655395, 536870912, 0, 655396, 536870912, 0 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 material = SubResource( 13 )
 position = Vector2( 609, 300 )
@@ -249,36 +250,35 @@ position = Vector2( 609, 300 )
 limit_right = 2963
 
 [node name="Coins" type="Node" parent="."]
-editor/display_folded = true
 
-[node name="Coin" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 526, 91 )
 
-[node name="Coin2" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin2" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 673, 91 )
 
-[node name="Coin3" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin3" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 1578, 385 )
 
-[node name="Coin4" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin4" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 1702, 385 )
 
-[node name="Coin5" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin5" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 2132, 554 )
 
-[node name="Coin6" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin6" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 2268, 554 )
 
-[node name="Coin7" parent="Coins" instance=ExtResource( 5 )]
+[node name="Coin7" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 2409, 557 )
 
 [node name="Enemies" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 6 )]
+[node name="Enemy" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 1458, 557 )
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 6 )]
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 2677, 710 )
 
 [node name="Effects" type="Node" parent="."]
@@ -299,11 +299,8 @@ lifetime = 1.5
 speed_scale = 1.5
 process_material = SubResource( 12 )
 
-[node name="Portal2D" parent="." instance=ExtResource( 7 )]
+[node name="Portal2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3160, 506 )
-next_scene = ExtResource( 8 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 14 )
+next_scene = ExtResource( 10 )
 
 [editable path="Player"]

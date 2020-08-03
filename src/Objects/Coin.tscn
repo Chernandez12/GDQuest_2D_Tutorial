@@ -125,6 +125,7 @@ tracks/1/keys = {
 }
 
 [node name="Coin" type="Area2D"]
+light_mask = 0
 position = Vector2( 0, -19.2111 )
 collision_layer = 4
 script = ExtResource( 1 )
