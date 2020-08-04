@@ -1,13 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41, 42 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 45.424, 46.6935 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "melee"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("icon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
@@ -43,5 +60,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 position = Vector2( -0.724945, -42.1743 )
 shape = SubResource( 2 )
+
+[node name="icon" type="Sprite" parent="."]
+visible = false
+position = Vector2( 86, -45.567 )
+scale = Vector2( 0.803969, 1.3986 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/melee = SubResource( 3 )
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]

@@ -1,6 +1,18 @@
 extends Actor
-#playercontrol
+
 export var stomp_impulse: = 1000.0
+
+onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
+onready var attack = get_node("icon")
+
+func _process(delta):
+	if Input.is_action_pressed("attack"):
+		anim_player.play("melee")
+	if Input.is_action_pressed("move_left"):
+		attack.position.x = -86
+	if Input.is_action_pressed("move_right"):
+		attack.position.x = 86
+	
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
