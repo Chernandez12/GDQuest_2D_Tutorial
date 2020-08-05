@@ -62,9 +62,8 @@ position = Vector2( -0.724945, -42.1743 )
 shape = SubResource( 2 )
 
 [node name="icon" type="Sprite" parent="."]
-visible = false
-position = Vector2( 86, -45.567 )
-scale = Vector2( 0.803969, 1.3986 )
+position = Vector2( 105, -50 )
+scale = Vector2( 1.38471, 0.522561 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
