@@ -231,7 +231,6 @@ position = Vector2( 609, 300 )
 limit_right = 2963
 
 [node name="Coins" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Coin" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 526, 91 )

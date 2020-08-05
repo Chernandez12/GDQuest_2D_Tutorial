@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemy.png" type="Texture" id=2]
@@ -8,6 +8,52 @@ extents = Vector2( 70, 40 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 80, 10 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "damage_taken"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("enemy:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "death"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("enemy:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.002, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 0.0507658 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 2
@@ -35,5 +81,9 @@ collision_layer = 2
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StompDetector"]
 position = Vector2( 0, -88 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/damage_taken = SubResource( 3 )
+anims/death = SubResource( 4 )
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]

@@ -9,20 +9,21 @@ func _process(delta):
 	if Input.is_action_pressed("attack"):
 		anim_player.play("melee")
 	if Input.is_action_pressed("move_left"):
-		attack.position.x = -86
+		attack.position.x = -142
 	if Input.is_action_pressed("move_right"):
-		attack.position.x = 86
+		attack.position.x = 142
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
-	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+	#_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+	pass
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	global.lives -= 1
 
 	get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
-	queue_free()
-	#if global.lives == 0:
-	#	queue_free()
+	#queue_free()
+	if global.lives == 0:
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
