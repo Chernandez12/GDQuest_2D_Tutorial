@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/glock-23-glock-17-glock-19-pistol-small-guns-png-clip-art-thumbnail.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41, 42 )
@@ -62,11 +62,14 @@ position = Vector2( -0.724945, -42.1743 )
 shape = SubResource( 2 )
 
 [node name="icon" type="Sprite" parent="."]
-position = Vector2( 105, -50 )
-scale = Vector2( 1.38471, 0.522561 )
+position = Vector2( 96.4955, -48.4251 )
+scale = Vector2( 0.184184, 0.128385 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/melee = SubResource( 3 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 438.453, -48.092 )
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]

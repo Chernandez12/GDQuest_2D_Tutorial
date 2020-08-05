@@ -10,21 +10,20 @@ var can_fire = true
 var rate_of_fire = 0.4
 
 func _process(delta):
-	#if Input.is_action_pressed("attack"):
-	#	anim_player.play("melee")
 	if Input.is_action_pressed("shoot") and can_fire:
 		can_fire = false
 		var bullet_instance = bullet.instance()
-		bullet_instance.position = get_global_position()
+		bullet_instance.global_position = get_node("Position2D").get_global_position()
 		get_parent().add_child(bullet_instance)
 		yield(get_tree().create_timer(rate_of_fire), "timeout")
 		can_fire = true
-		
-	#	anim_player.play("melee")
+
 	if Input.is_action_pressed("move_left"):
 		attack.position.x = -105
+		get_node("icon").flip_h = true
 	if Input.is_action_pressed("move_right"):
 		attack.position.x = 105
+		get_node("icon").flip_h = false
 	
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
