@@ -7,22 +7,30 @@ onready var attack = get_node("icon")
 
 var bullet = preload("res://src/Objects/Bullet.tscn")
 var can_fire = true
-var rate_of_fire = 0.4
+
+export var rate_of_fire = 0.5
 
 func _process(delta):
 	if Input.is_action_pressed("shoot") and can_fire:
 		can_fire = false
 		var bullet_instance = bullet.instance()
-		bullet_instance.global_position = get_node("Position2D").get_global_position()
 		get_parent().add_child(bullet_instance)
+		bullet_instance.global_position = get_node("Position2D").get_global_position()
+		if get_node("icon").flip_h == true:
+			bullet_instance.global_position.x = get_node("Position2D").get_global_position().x - 278.0
+		print(bullet_instance.global_position)
+#		print("Bitch: ", get_node("Position2D").get_global_position().x)
+		
 		yield(get_tree().create_timer(rate_of_fire), "timeout")
 		can_fire = true
 
 	if Input.is_action_pressed("move_left"):
 		attack.position.x = -105
+		global.facing_right = false
 		get_node("icon").flip_h = true
 	if Input.is_action_pressed("move_right"):
 		attack.position.x = 105
+		global.facing_right = true
 		get_node("icon").flip_h = false
 	
 

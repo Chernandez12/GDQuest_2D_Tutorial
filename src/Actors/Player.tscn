@@ -29,6 +29,10 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
 speed = Vector2( 800, 1400 )
 
 [node name="player" type="Sprite" parent="."]
@@ -70,6 +74,6 @@ texture = ExtResource( 3 )
 anims/melee = SubResource( 3 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 438.453, -48.092 )
+position = Vector2( 128.728, -59.1924 )
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
