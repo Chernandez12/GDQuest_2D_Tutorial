@@ -17,7 +17,7 @@ func _on_StompDetector_area_entered(area: Area2D) -> void:
 		_velocity.x = 0
 		anim_player.play("death")
 		get_node("CollisionShape2D").disabled = true
-		#queue_free()
+		queue_free()
 
 func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	if body.global_position.y > get_node("StompDetector").global_position.y:

@@ -169,7 +169,6 @@ rotation = -2.02633
 texture = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -100
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
@@ -273,6 +272,7 @@ speed_scale = 1.5
 process_material = SubResource( 13 )
 
 [node name="Portal2D" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 3160, 506 )
 next_scene = ExtResource( 10 )
 
