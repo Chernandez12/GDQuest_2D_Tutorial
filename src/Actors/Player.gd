@@ -1,6 +1,8 @@
 extends Actor
 
 export var stomp_impulse: = 1000.0
+var dashing: = false
+export var can_dash: = true
 
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 onready var attack = get_node("player/MeleeDetector/CollisionShape2D")
@@ -31,8 +33,10 @@ func _physics_process(delta: float) -> void:
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and can_dash:
+		dashing = true
 		dash()
+		
  
 func get_direction() -> Vector2:
 	return Vector2(
@@ -69,3 +73,9 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 
 func _on_dashTimer_timeout():
 	speed.x = 400.0
+	dashing = false
+	$dashCooldownTimer.start()
+	can_dash = false
+
+func _on_dashCooldownTimer_timeout():
+	can_dash = true

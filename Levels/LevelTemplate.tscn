@@ -240,8 +240,12 @@ speed = Vector2( 400, 1400 )
 limit_right = 2963
 
 [node name="dashTimer" type="Timer" parent="Player"]
-wait_time = 0.2
+process_mode = 0
+wait_time = 0.3
 one_shot = true
+
+[node name="dashCooldownTimer" type="Timer" parent="Player"]
+process_mode = 0
 
 [node name="Coins" type="Node" parent="."]
 
@@ -289,5 +293,6 @@ visible = false
 position = Vector2( 3160, 506 )
 next_scene = ExtResource( 10 )
 [connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
+[connection signal="timeout" from="Player/dashCooldownTimer" to="Player" method="_on_dashCooldownTimer_timeout"]
 
 [editable path="Player"]
