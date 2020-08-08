@@ -30,6 +30,9 @@ func _physics_process(delta: float) -> void:
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
+	
+	if Input.is_action_just_pressed("dash"):
+		dash()
  
 func get_direction() -> Vector2:
 	return Vector2(
@@ -38,6 +41,10 @@ func get_direction() -> Vector2:
 		if Input.is_action_just_pressed("jump") and is_on_floor()
 		else 0.0
 	)
+	
+func dash():
+	speed.x = 1100.0
+	$dashTimer.start()
 
 func calculate_move_velocity(
 		linear_velocity: Vector2,
@@ -59,3 +66,6 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	var out: = linear_velocity
 	out.y = -impulse
 	return out
+
+func _on_dashTimer_timeout():
+	speed.x = 400.0

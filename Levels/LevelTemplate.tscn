@@ -36,6 +36,11 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 3 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -58,6 +63,10 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
 2/name = "tileset.png 2"
@@ -68,6 +77,10 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
 
@@ -121,10 +134,8 @@ __meta__ = {
 }
 
 [node name="Parallax" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-editor/display_folded = true
 layer = -2
 scroll_base_scale = Vector2( 0.1, 0.1 )
 
@@ -155,7 +166,6 @@ scale = Vector2( 0.5, 0.5 )
 texture = SubResource( 1 )
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="Parallax"]
-editor/display_folded = true
 layer = 0
 scroll_base_scale = Vector2( 0.5, 0.5 )
 
@@ -222,12 +232,16 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0, 36, 536870912, 0, 65536, 0, 0, 65572, 536870912, 0, 131073, 536870912, 0, 131079, 536870912, 0, 131080, 536870912, 0, 131108, 536870912, 0, 196608, 0, 0, 196644, 536870912, 0, 262144, 0, 0, 262180, 536870912, 0, 327681, 536870912, 0, 327682, 536870912, 0, 327684, 536870912, 0, 327685, 536870912, 0, 327687, 536870912, 0, 327716, 536870912, 0, 393217, 536870912, 0, 393218, 536870912, 0, 393219, 536870912, 0, 393220, 536870912, 0, 393221, 536870912, 0, 393222, 536870912, 0, 393223, 536870912, 0, 393236, 536870912, 0, 393237, 536870912, 0, 393252, 536870912, 0, 458753, 536870912, 0, 458754, 536870912, 0, 458755, 536870912, 0, 458756, 536870912, 0, 458757, 536870912, 0, 458758, 536870912, 0, 458759, 536870912, 0, 458760, 536870912, 0, 458761, 536870912, 0, 458762, 536870912, 0, 458763, 536870912, 0, 458764, 536870912, 0, 458766, 536870912, 0, 458768, 536870912, 0, 458769, 536870912, 0, 458770, 536870912, 0, 458771, 536870912, 0, 458772, 536870912, 0, 458773, 536870912, 0, 458774, 536870912, 0, 458788, 536870912, 0, 524289, 536870912, 0, 524290, 536870912, 0, 524291, 536870912, 0, 524292, 536870912, 0, 524293, 536870912, 0, 524294, 536870912, 0, 524295, 536870912, 0, 524296, 536870912, 0, 524297, 536870912, 0, 524298, 536870912, 0, 524299, 536870912, 0, 524300, 536870912, 0, 524301, 536870912, 0, 524302, 536870912, 0, 524303, 536870912, 0, 524304, 536870912, 0, 524305, 536870912, 0, 524306, 536870912, 0, 524307, 536870912, 0, 524308, 536870912, 0, 524309, 536870912, 0, 524310, 536870912, 0, 524315, 536870912, 0, 524316, 536870912, 0, 524318, 536870912, 0, 524324, 536870912, 0, 589825, 536870912, 0, 589826, 536870912, 0, 589827, 536870912, 0, 589828, 536870912, 0, 589829, 536870912, 0, 589830, 536870912, 0, 589831, 536870912, 0, 589832, 536870912, 0, 589833, 536870912, 0, 589834, 536870912, 0, 589835, 536870912, 0, 589836, 536870912, 0, 589837, 536870912, 0, 589838, 536870912, 0, 589839, 536870912, 0, 589840, 536870912, 0, 589841, 536870912, 0, 589842, 536870912, 0, 589843, 536870912, 0, 589844, 536870912, 0, 589845, 536870912, 0, 589846, 536870912, 0, 589847, 536870912, 0, 589848, 536870912, 0, 589849, 536870912, 0, 589850, 536870912, 0, 589851, 536870912, 0, 589852, 536870912, 0, 589853, 536870912, 0, 589854, 536870912, 0, 589855, 536870912, 0, 589856, 536870912, 0, 589858, 536870912, 0, 589860, 536870912, 0, 655379, 536870912, 0, 655380, 536870912, 0, 655381, 536870912, 0, 655382, 536870912, 0, 655384, 536870912, 0, 655385, 536870912, 0, 655386, 536870912, 0, 655387, 536870912, 0, 655388, 536870912, 0, 655389, 536870912, 0, 655390, 536870912, 0, 655391, 536870912, 0, 655392, 536870912, 0, 655393, 536870912, 0, 655394, 536870912, 0, 655395, 536870912, 0, 655396, 536870912, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 material = SubResource( 6 )
 position = Vector2( 609, 300 )
+speed = Vector2( 400, 1400 )
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_right = 2963
+
+[node name="dashTimer" type="Timer" parent="Player"]
+wait_time = 0.2
+one_shot = true
 
 [node name="Coins" type="Node" parent="."]
 
@@ -261,7 +275,6 @@ position = Vector2( 1458, 557 )
 position = Vector2( 2677, 710 )
 
 [node name="Effects" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Flame" type="Particles2D" parent="Effects"]
 position = Vector2( 760, 450 )
@@ -275,5 +288,6 @@ process_material = SubResource( 13 )
 visible = false
 position = Vector2( 3160, 506 )
 next_scene = ExtResource( 10 )
+[connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
 
 [editable path="Player"]
