@@ -13,8 +13,6 @@ collision_mask = 2147483658
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
-projectile_speed = 900
-lifetime = 3
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -24,5 +22,5 @@ scale = Vector2( 0.0934092, 0.0934092 )
 texture = ExtResource( 1 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 3 )]
-rotation = 3.14159
+rotation = 0.0
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

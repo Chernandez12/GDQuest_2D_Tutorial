@@ -1,16 +1,22 @@
 extends RigidBody2D
 
-export var projectile_speed = 400
-export var lifetime = 1
+export var projectile_speed = 500
+export var lifetime = 0.5
+var velocity = Vector2()
+var direction = 1
 
-func _process(delta):
-	if global.facing_right:
-		global_position.x += projectile_speed * delta
-	else:
-		global_position.x -= projectile_speed * delta
-
+func _physics_process(delta):
+	global_position.x += projectile_speed * delta * direction
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if global.facing_right:
+		direction = 1
+		get_node("Particles2D").rotation_degrees = 180
+	else:
+		direction = -1
+		get_node("Particles2D").rotation_degrees = -180
+	set_physics_process(true)
 	SelfDestruct()
 	
 func SelfDestruct():
