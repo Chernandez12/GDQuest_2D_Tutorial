@@ -215,7 +215,7 @@ script = ExtResource( 2 )
 
 [node name="fog" type="Sprite" parent="CanvasLayer"]
 material = SubResource( 2 )
-position = Vector2( 570, 300 )
+position = Vector2( 572.52, 300 )
 scale = Vector2( 20, 20 )
 texture = ExtResource( 4 )
 
@@ -233,7 +233,7 @@ material = SubResource( 6 )
 position = Vector2( 609, 300 )
 speed = Vector2( 400, 1400 )
 
-[node name="Camera2D" parent="Player" index="2"]
+[node name="Camera2D" parent="Player" index="4"]
 limit_right = 2963
 
 [node name="dashTimer" type="Timer" parent="Player"]
