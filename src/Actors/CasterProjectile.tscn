@@ -28,7 +28,7 @@ color_ramp = SubResource( 2 )
 radius = 11.0153
 
 [node name="CasterProjectile" type="RigidBody2D"]
-collision_layer = 16
+collision_layer = 18
 collision_mask = 9
 contacts_reported = 1
 contact_monitor = true

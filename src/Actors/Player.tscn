@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/Yuvia/Swipe.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 38.6123, 81.4942 )
+extents = Vector2( 45.4525, 74.7952 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 259.361
@@ -55,7 +55,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 31.9271, 74.7748 )
+extents = Vector2( 43.8414, 74.7748 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "death"
@@ -809,8 +809,6 @@ position = Vector2( 134.867, 55.7071 )
 texture = ExtResource( 5 )
 
 [node name="EnemyDetector" type="Area2D" parent="yuvia"]
-editor/display_folded = true
-visible = false
 modulate = Color( 0.345098, 0.0705882, 0.670588, 1 )
 position = Vector2( 63.7186, 244.553 )
 scale = Vector2( 5, 5 )
@@ -819,6 +817,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="yuvia/EnemyDetector"]
+visible = false
 position = Vector2( -7.38641, -42.8755 )
 shape = SubResource( 1 )
 
@@ -862,7 +861,6 @@ scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="player" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 0, -48 )
 scale = Vector2( 0.2, 0.2 )

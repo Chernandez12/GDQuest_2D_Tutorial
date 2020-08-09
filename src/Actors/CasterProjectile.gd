@@ -36,5 +36,5 @@ func spawn(position):
 #	pass
 
 func _on_CasterProjectile_body_entered(body):
-	print("Hit")
-	self.hide()
+	print("Player Hit")
+	queue_free()
