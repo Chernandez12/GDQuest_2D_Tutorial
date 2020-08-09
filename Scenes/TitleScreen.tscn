@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/background.png" type="Texture" id=8]
+[ext_resource path="res://TitleScreen.gd" type="Script" id=9]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+
+[node name="TitleScreen" type="Node"]
+script = ExtResource( 9 )
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 0.66875, 0.666667 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 100
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 469.0
+margin_top = 100.0
+margin_right = 810.0
+margin_bottom = 700.0
+size_flags_horizontal = 4
+custom_constants/separation = 30
+
+[node name="TitleButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_right = 341.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 3 )
+text = "GHOST GAME"
+flat = true
+
+[node name="Title" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+margin_top = 93.0
+margin_right = 341.0
+margin_bottom = 93.0
+rect_clip_content = true
+custom_fonts/font = ExtResource( 3 )
+text = "GHOST GAME"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+
+[node name="PictureTitle" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 50.0
+margin_right = 91.0
+margin_bottom = 89.0
+texture = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 123.0
+margin_right = 341.0
+margin_bottom = 212.0
+custom_constants/separation = 15
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 341.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 2 )
+text = "Start"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
+margin_top = 117.0
+margin_right = 341.0
+margin_bottom = 154.0
+custom_fonts/font = ExtResource( 2 )
+text = "Credits"
+flat = true
+
+[node name="ControlsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
+margin_top = 117.0
+margin_right = 341.0
+margin_bottom = 154.0
+custom_fonts/font = ExtResource( 2 )
+text = "Controls"
+flat = true
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 341.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
