@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/HUD.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Actors/Caster.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -246,6 +245,9 @@ one_shot = true
 [node name="dashCooldownTimer" type="Timer" parent="Player"]
 process_mode = 0
 
+[node name="knockedBackTimer" type="Timer" parent="Player"]
+wait_time = 0.3
+
 [node name="Coins" type="Node" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource( 7 )]
@@ -277,9 +279,6 @@ position = Vector2( 1458, 557 )
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 2677, 710 )
 
-[node name="Caster" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 1075.65, 244.662 )
-
 [node name="Effects" type="Node" parent="."]
 
 [node name="Flame" type="Particles2D" parent="Effects"]
@@ -291,5 +290,6 @@ speed_scale = 1.5
 process_material = SubResource( 13 )
 [connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
 [connection signal="timeout" from="Player/dashCooldownTimer" to="Player" method="_on_dashCooldownTimer_timeout"]
+[connection signal="timeout" from="Player/knockedBackTimer" to="Player" method="_on_knockedBackTimer_timeout"]
 
 [editable path="Player"]
