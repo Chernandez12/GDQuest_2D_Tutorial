@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemies/wraith.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/wraith/Wraith_Tail.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/wraith/Wraith_Body.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/wraith/Wraith_Head.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 70, 40 )
@@ -11,48 +13,173 @@ extents = Vector2( 80, 10 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "damage_taken"
-length = 0.8
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/enemy:modulate")
+tracks/0/path = NodePath("CollisionShape2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 0.517632 ),
 "update": 0,
-"values": [ Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.490196, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.270588, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "death"
 length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D/enemy:modulate")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.001, 0.002, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 0.0507658 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "queue_free"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.366022 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/Wraith_Tail:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20.725, 9.14948 ), Vector2( 37.4172, 13.3225 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D/Wraith_Tail:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0002 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D/Wraith_Tail:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 0.16, 0.2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D/Wraith_Body:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -12.0632, 1.39955 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D/Wraith_Body:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -22.0, -14.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D/Wraith_Body:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CollisionShape2D/Wraith_Head:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -35.3131, -17.6773 ), Vector2( -32.3323, -23.0426 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CollisionShape2D/Wraith_Head:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 13.0, -12.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CollisionShape2D/Wraith_Head:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CollisionShape2D:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -61,14 +188,27 @@ collision_mask = 9
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, -37 )
 shape = SubResource( 1 )
 
-[node name="enemy" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( 0, -11 )
+[node name="Wraith_Tail" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( 20.725, 9.14948 )
 rotation = -1.5708
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
+
+[node name="Wraith_Body" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( -12.0632, 1.39955 )
+rotation = -0.383972
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Wraith_Head" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( -35.3131, -17.6773 )
+rotation = 0.226893
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 0, -10 )
@@ -85,7 +225,9 @@ position = Vector2( 0, -88 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 anims/damage_taken = SubResource( 3 )
 anims/death = SubResource( 4 )
+anims/idle = SubResource( 5 )
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]

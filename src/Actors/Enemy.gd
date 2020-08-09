@@ -33,8 +33,21 @@ func _on_StompDetector_area_entered(area: Area2D) -> void:
 		_velocity.x = 0
 		anim_player.play("death")
 		get_node("CollisionShape2D").disabled = true
-		queue_free()
+		#queue_free()
 
+func _physics_process(delta: float) -> void:
+	_velocity.y += gravity * delta
+	if is_on_wall():
+		_velocity.x *= -1.0
+		if _velocity.x < 300:
+			get_node("CollisionShape2D").scale.x = 1
+		else:
+			get_node("CollisionShape2D").scale.x = -1
+	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
+	
+func _on_knockBackTimer_timeout():
+	stunned = false
+	_velocity.x = -speed.x
 func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	if body.global_position.y > get_node("StompDetector").global_position.y:
 		return
@@ -47,12 +60,6 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 		#get_node("CollisionShape2D").disabled = true
 		#queue_free()
 
-func _physics_process(delta: float) -> void:
-	_velocity.y += gravity * delta
-	if is_on_wall():
-		_velocity.x *= -1.0
-	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
-	
-func _on_knockBackTimer_timeout():
-	stunned = false
-	_velocity.x = -speed.x
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	anim_player.play("idle")
