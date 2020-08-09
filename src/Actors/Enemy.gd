@@ -4,7 +4,7 @@ export var health = 3
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 
 func _ready() -> void:
-	set_physics_process(false)
+	set_physics_process(true)
 	_velocity.x = -speed.x
 
 func _on_StompDetector_area_entered(area: Area2D) -> void:

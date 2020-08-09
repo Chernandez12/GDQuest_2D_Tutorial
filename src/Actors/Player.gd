@@ -7,6 +7,10 @@ export var can_dash: = true
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 onready var attack = get_node("player/MeleeDetector/CollisionShape2D")
 #global_position += speed * delta
+
+func _ready():
+	global.set("player", self)
+	
 func _process(delta):
 	if Input.is_action_pressed("attack"):
 		anim_player.play("melee")
