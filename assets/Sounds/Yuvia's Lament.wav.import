@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Yuvia's Lament.wav-942ee4ebaa7b814edf4b3399726b0582.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Yuvia's Lament.wav"
+dest_files=[ "res://.import/Yuvia's Lament.wav-942ee4ebaa7b814edf4b3399726b0582.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

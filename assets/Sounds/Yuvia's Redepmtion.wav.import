@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Yuvia's Redepmtion.wav-d2b5d72dc810a64e2306c4b973c9c0cf.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Yuvia's Redepmtion.wav"
+dest_files=[ "res://.import/Yuvia's Redepmtion.wav-d2b5d72dc810a64e2306c4b973c9c0cf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
