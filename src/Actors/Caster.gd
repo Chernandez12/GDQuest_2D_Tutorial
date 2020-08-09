@@ -2,6 +2,7 @@ extends "res://src/Actors/Actor.gd"
 
 export var health = 3
 onready var player = global.get("player")
+onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 var can_fire = true
 var timer = Timer.new()
 const bullet = preload("res://src/Actors/CasterProjectile.tscn")
@@ -46,3 +47,19 @@ func _on_knockBackTimer_timeout():
 
 func stop():
 	pass
+
+
+func _on_CasterHitbox_area_entered(area):
+	health -= 1
+	print("ENEMY SLASHED")
+	anim_player.play("damage")
+	
+	_velocity = knockBackVector
+	if self.global_transform.origin.x < player.global_transform.origin.x:
+		_velocity.x *= -1
+	knockBackTimer.start()
+	
+	if health == 0:
+		_velocity.x = 0
+		get_node("CollisionShape2D").disabled = true
+		queue_free()

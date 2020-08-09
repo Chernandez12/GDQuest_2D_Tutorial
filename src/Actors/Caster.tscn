@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Actors/Caster.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemies/caster.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 57.4817, 110.682 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 335.802, 478.309 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "damage"
@@ -22,8 +25,7 @@ tracks/0/keys = {
 "values": [ Color( 0.364706, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D:position")
@@ -63,7 +65,14 @@ shape = SubResource( 1 )
 scale = Vector2( 0.266139, 0.266139 )
 texture = ExtResource( 2 )
 
+[node name="CasterHitbox" type="Area2D" parent="CollisionShape2D/Sprite"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite/CasterHitbox"]
+shape = SubResource( 2 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/damage = SubResource( 3 )
-anims/idle = SubResource( 2 )
+anims/idle = SubResource( 4 )
+[connection signal="area_entered" from="CollisionShape2D/Sprite/CasterHitbox" to="." method="_on_CasterHitbox_area_entered"]
