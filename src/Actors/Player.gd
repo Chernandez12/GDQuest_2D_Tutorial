@@ -55,6 +55,7 @@ func on_death():
 func hurt(body: PhysicsBody2D) -> void:
 	if not invincible and is_instance_valid(body):
 		print("INVINCIBLE") #Play animation / effects here
+		attack_player.play("damage")
 		global.lives -= 1
 		invincible = true
 		knocked_back = true

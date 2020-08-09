@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Yuvia/Tail.png" type="Texture" id=2]
@@ -15,7 +15,22 @@ radius = 259.361
 height = 297.303
 
 [sub_resource type="Animation" id=3]
-resource_name = "melee"
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.584314, 0.0235294, 0.0235294, 1 ), Color( 1, 0.992157, 0.992157, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
@@ -53,12 +68,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 0.623529, 0.937255, 1, 1 ), Color( 0.623529, 0.937255, 1, 0.145098 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("../..:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.992157, 0.992157, 1 ) ]
+}
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 43.8414, 74.7748 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "death"
+[sub_resource type="Animation" id=6]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("yuvia/Body:position")
@@ -193,8 +219,7 @@ tracks/10/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "falling"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("yuvia/Head:position")
@@ -329,7 +354,7 @@ tracks/10/keys = {
 "values": [ 1.0, 0.7 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -489,8 +514,7 @@ tracks/12/keys = {
 "values": [ 1.0 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "jump"
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("yuvia/Head:position")
@@ -625,7 +649,7 @@ tracks/10/keys = {
 "values": [ Color( 0.737255, 0.729412, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 0.52
 loop = true
 tracks/0/type = "value"
@@ -779,6 +803,7 @@ script = ExtResource( 1 )
 speed = Vector2( 800, 1400 )
 
 [node name="yuvia" type="Node2D" parent="."]
+modulate = Color( 1, 0.992157, 0.992157, 1 )
 position = Vector2( -11.7437, -49.9107 )
 scale = Vector2( 0.2, 0.2 )
 z_index = 1
@@ -834,14 +859,15 @@ disabled = true
 
 [node name="Swipe" type="Sprite" parent="yuvia/MeleeDetector"]
 visible = false
-self_modulate = Color( 0.623529, 0.937255, 1, 1 )
+self_modulate = Color( 0.623529, 0.937255, 1, 0.145098 )
 position = Vector2( 300.247, -85.9424 )
 rotation = -0.396277
 scale = Vector2( 1.59492, 1.0821 )
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="yuvia/MeleeDetector/Swipe"]
-anims/melee = SubResource( 3 )
+anims/damage = SubResource( 3 )
+anims/melee = SubResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="yuvia/MeleeDetector/Swipe"]
 position = Vector2( 92.4263, -44.9166 )
@@ -852,7 +878,7 @@ texture_scale = 0.53
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -6.36267, -42.531 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Tail" type="Sprite" parent="."]
 visible = false
@@ -887,11 +913,11 @@ drag_margin_right = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/death = SubResource( 5 )
-anims/falling = SubResource( 6 )
-anims/idle = SubResource( 7 )
-anims/jump = SubResource( 8 )
-anims/moving = SubResource( 9 )
+anims/death = SubResource( 6 )
+anims/falling = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/jump = SubResource( 9 )
+anims/moving = SubResource( 10 )
 [connection signal="area_entered" from="yuvia/EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="yuvia/EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
