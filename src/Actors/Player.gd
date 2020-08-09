@@ -11,6 +11,8 @@ var knocked_back = false
 var knock_back_dir = 1
 var knock_back_Vect = Vector2(800, -600)
 
+var facing_left = 1
+
 func _ready():
 	global.set("player", self)
 	
@@ -19,8 +21,10 @@ func _process(delta):
 		anim_player.play("melee")
 	if Input.is_action_pressed("move_left"):
 		attack.position.x = -142
+		facing_left = 1
 	if Input.is_action_pressed("move_right"):
 		attack.position.x = 142
+		facing_left = -1
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	#_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
@@ -105,3 +109,10 @@ func _on_dashCooldownTimer_timeout():
 
 func _on_knockedBackTimer_timeout():
 	knocked_back = false
+
+func _on_MeleeDetector_area_entered(area):
+	knocked_back = true
+	$knockedBackTimer.start()
+	
+	_velocity.x = knock_back_Vect.x * facing_left * 0.25
+	_velocity.y = knock_back_Vect.y * 0.5

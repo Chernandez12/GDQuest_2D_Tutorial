@@ -74,5 +74,6 @@ shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/melee = SubResource( 4 )
+[connection signal="area_entered" from="player/MeleeDetector" to="." method="_on_MeleeDetector_area_entered"]
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
