@@ -17,6 +17,7 @@ var facing_left = 1
 
 func _ready():
 	global.set("player", self)
+	
 func _process(delta):
 
 	if Input.is_action_pressed("move_left"):
@@ -83,6 +84,7 @@ func get_direction() -> Vector2:
 	)
 
 func dash():
+	can_dash = false
 	speed.x = 1100.0
 	$dashTimer.start()
 
