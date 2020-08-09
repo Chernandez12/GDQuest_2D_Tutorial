@@ -27,12 +27,13 @@ _global_script_class_icons={
 [application]
 
 config/name="2D Platformer Demo"
-run/main_scene="res://Levels/LevelTemplate.tscn"
+run/main_scene="res://Scenes/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 global="*res://src/global.gd"
+Pause="*res://autoloads/Pause.tscn"
 
 [display]
 
