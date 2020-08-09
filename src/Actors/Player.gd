@@ -44,6 +44,13 @@ func _process(delta):
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	#_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 	print("Attack")
+	
+func on_death():
+	global.lives = 5
+	get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
+	self.global_position = Vector2(450, 300)
+	self._velocity = Vector2.ZERO
+	# Add animations / Screen transitions / SFX here
 
 func hurt(body: PhysicsBody2D) -> void:
 	if not invincible and is_instance_valid(body):
@@ -67,12 +74,12 @@ func hurt(body: PhysicsBody2D) -> void:
 		get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
 		#queue_free()
 		if global.lives == 0:
-			queue_free()
+			on_death()
 			
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	last_hit_enemy = body
 	hurt(body)
-	
+
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
