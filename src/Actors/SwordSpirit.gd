@@ -1,9 +1,9 @@
-extends KinematicBody2D
+extends "res://src/Actors/Actor.gd"
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var player = global.get("player")
+onready var object = get_node("Sprite")
+var enemy_speed = 100
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,5 +12,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	var dir = (object.global_position - global_position)
