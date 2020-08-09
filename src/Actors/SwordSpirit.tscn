@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/Actors/SwordSpirit.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sword_Spirit.png" type="Texture" id=2]
 [ext_resource path="res://assets/Sword.png" type="Texture" id=3]
 
@@ -9,9 +9,6 @@ extents = Vector2( 47.7499, 97.0542 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 91.7561 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 468.196, 253.496 )
 
 [node name="SwordSpirit" type="KinematicBody2D"]
 collision_layer = 2
@@ -35,8 +32,3 @@ position = Vector2( 1.74226, -0.98525 )
 rotation = -0.0954185
 scale = Vector2( 0.306008, 0.317923 )
 texture = ExtResource( 3 )
-
-[node name="EnemySight" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySight"]
-shape = SubResource( 3 )
