@@ -3,15 +3,29 @@ extends Actor
 export var stomp_impulse: = 1000.0
 
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
-onready var attack = get_node("player/MeleeDetector/CollisionShape2D")
-#global_position += speed * delta
+onready var attack_player: AnimationPlayer = get_node("yuvia/MeleeDetector/Swipe/AnimationPlayer")
+onready var attack = get_node("yuvia/MeleeDetector")
+onready var yuvia = get_node("yuvia")
+
 func _process(delta):
-	if Input.is_action_pressed("attack"):
-		anim_player.play("melee")
+
 	if Input.is_action_pressed("move_left"):
-		attack.position.x = -142
+		anim_player.play("moving")
+		yuvia.scale.x = -0.2
 	if Input.is_action_pressed("move_right"):
-		attack.position.x = 142
+		anim_player.play("moving")
+		yuvia.scale.x = 0.2
+	if Input.is_action_just_pressed("attack"):
+		attack_player.play("melee")
+	if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):
+		anim_player.play("idle")
+	if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
+		anim_player.play("idle")
+	if _velocity.y < 0:
+		anim_player.play("jump")
+	elif _velocity.y > 0:
+		anim_player.play("falling")
+
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	#_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
@@ -19,7 +33,6 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	global.lives -= 1
-
 	get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
 	#queue_free()
 	if global.lives == 0:
@@ -59,3 +72,6 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	var out: = linear_velocity
 	out.y = -impulse
 	return out
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	anim_player.play("idle")

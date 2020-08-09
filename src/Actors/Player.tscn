@@ -1,30 +1,413 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/player.png" type="Texture" id=2]
+[ext_resource path="res://assets/Yuvia/Tail.png" type="Texture" id=2]
+[ext_resource path="res://assets/light_mask.png" type="Texture" id=3]
+[ext_resource path="res://assets/Yuvia/Body.png" type="Texture" id=4]
+[ext_resource path="res://assets/Yuvia/Head.png" type="Texture" id=5]
+[ext_resource path="res://assets/Yuvia/Swipe.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 84.0107, 54.5994 )
+extents = Vector2( 38.6123, 81.4942 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 41, 42 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 259.361
+height = 297.303
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 45.424, 46.6935 )
-
-[sub_resource type="Animation" id=4]
-length = 0.4
+[sub_resource type="Animation" id=7]
+resource_name = "melee"
+length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("player/MeleeDetector/CollisionShape2D:disabled")
+tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.623529, 0.937255, 1, 1 ), Color( 0.623529, 0.937255, 1, 0.145098 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 31.9271, 74.7748 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "falling"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("yuvia/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 137.196, 109.016 ), Vector2( 135, 109 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("yuvia/Tail:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.255 ), Vector2( 1, 1.15 ), Vector2( 1, 1.255 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("yuvia/Tail:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 12.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("yuvia/Tail:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5.984, -85.1587 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("yuvia/Head:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("yuvia/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 133.371, 53.8778 ), Vector2( 137.854, 59.36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("yuvia/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.02, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("yuvia/Tail:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5.984, -86.045 ), Vector2( 5.984, -79.135 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("yuvia/Tail:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.517647 ), Color( 1, 1, 1, 0.207843 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("yuvia/Body:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 23.1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("yuvia/Tail:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("yuvia/Head:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("yuvia/MeleeDetector/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("yuvia/Head:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "jump"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("yuvia/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 278.198, -13.005 ), Vector2( 275.888, -10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("yuvia/Tail:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.255 ), Vector2( 1, 1.15 ), Vector2( 1, 1.255 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("yuvia/Tail:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 12.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("yuvia/Tail:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5.984, -85.1587 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("yuvia/Head:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -33.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.52
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("yuvia/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.535887 ),
+"update": 0,
+"values": [ Vector2( 239.223, 86.2988 ), Vector2( 193.808, 54.1537 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("yuvia/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.02, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("yuvia/Tail:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.517647 ), Color( 1, 1, 1, 0.207843 ), Color( 1, 1, 1, 0.517647 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("yuvia/Body:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.450625, 2.14355, 0.450625 ),
+"update": 0,
+"values": [ 23.1, 19.1, 23.1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("yuvia/Tail:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.09 ), Vector2( 1, 1.2 ), Vector2( 1, 1.09 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("yuvia/Tail:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 36.3, 33.3, 36.3 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("yuvia/Tail:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 75.9526, -85.3162 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("yuvia/MeleeDetector/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("yuvia/Head:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -15.0 ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -32,23 +415,102 @@ collision_mask = 8
 script = ExtResource( 1 )
 speed = Vector2( 800, 1400 )
 
-[node name="player" type="Sprite" parent="."]
-position = Vector2( 0, -48 )
+[node name="yuvia" type="Node2D" parent="."]
+position = Vector2( -11.7437, -49.9107 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 1
+z_as_relative = false
+
+[node name="Tail" type="Sprite" parent="yuvia"]
+modulate = Color( 1, 1, 1, 0.517647 )
+position = Vector2( 5.984, -86.045 )
+scale = Vector2( 1, 1.09 )
 texture = ExtResource( 2 )
 
-[node name="MeleeDetector" type="Area2D" parent="player"]
-position = Vector2( 0, 48 )
+[node name="Light2D" type="Light2D" parent="yuvia/Tail"]
+position = Vector2( -23.0696, 244.976 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+texture_scale = 0.8
+color = Color( 0.737255, 0.729412, 1, 1 )
+energy = 1.8
+mode = 2
+
+[node name="Body" type="Sprite" parent="yuvia"]
+position = Vector2( 53.6423, 10.345 )
+rotation = 0.403171
+texture = ExtResource( 4 )
+
+[node name="Head" type="Sprite" parent="yuvia"]
+position = Vector2( 133.371, 53.8778 )
+texture = ExtResource( 5 )
+
+[node name="EnemyDetector" type="Area2D" parent="yuvia"]
+editor/display_folded = true
+visible = false
+modulate = Color( 0.345098, 0.0705882, 0.670588, 1 )
+position = Vector2( 63.7186, 244.553 )
+scale = Vector2( 5, 5 )
+monitorable = false
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/MeleeDetector"]
-position = Vector2( 142, -44.047 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="yuvia/EnemyDetector"]
+position = Vector2( -7.38641, -42.8755 )
 shape = SubResource( 1 )
-disabled = true
+
+[node name="MeleeDetector" type="Area2D" parent="yuvia"]
+position = Vector2( 58, 57 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="yuvia/MeleeDetector"]
+position = Vector2( 272.987, -31.2152 )
+scale = Vector2( -1, 1 )
+shape = SubResource( 2 )
+
+[node name="Swipe" type="Sprite" parent="yuvia/MeleeDetector"]
+visible = false
+self_modulate = Color( 0.623529, 0.937255, 1, 1 )
+position = Vector2( 300.247, -85.9424 )
+rotation = -0.396277
+scale = Vector2( 1.59492, 1.0821 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="yuvia/MeleeDetector/Swipe"]
+anims/melee = SubResource( 7 )
+
+[node name="Light2D" type="Light2D" parent="yuvia/MeleeDetector/Swipe"]
+position = Vector2( 92.4263, -44.9166 )
+rotation = 1.46608
+texture = ExtResource( 3 )
+texture_scale = 0.53
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, -40.0768 )
-shape = SubResource( 2 )
+visible = false
+position = Vector2( -6.36267, -42.531 )
+shape = SubResource( 3 )
+
+[node name="Tail" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -48 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="player" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( 0, -48 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="Head" type="Sprite" parent="player"]
+texture = ExtResource( 5 )
+
+[node name="Swipe" type="Sprite" parent="player"]
+visible = false
+position = Vector2( 461.675, 14.8158 )
+texture = ExtResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -96 )
@@ -61,18 +523,12 @@ smoothing_speed = 10.0
 drag_margin_left = 0.0
 drag_margin_right = 0.0
 
-[node name="EnemyDetector" type="Area2D" parent="."]
-modulate = Color( 0.345098, 0.0705882, 0.670588, 1 )
-position = Vector2( 1, -1 )
-monitorable = false
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2( -0.724945, -42.1743 )
-shape = SubResource( 3 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/melee = SubResource( 4 )
-[connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
-[connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
+autoplay = "idle"
+anims/falling = SubResource( 9 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 8 )
+anims/moving = SubResource( 6 )
+[connection signal="area_entered" from="yuvia/EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
+[connection signal="body_entered" from="yuvia/EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
