@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="2D Platformer Demo"
-run/main_scene="res://Scenes/TitleScreen.tscn"
+run/main_scene="res://Scenes/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
 [autoload]

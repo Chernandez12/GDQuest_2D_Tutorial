@@ -7,7 +7,6 @@
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
-load_path = "res://.import/title.png-f520a0d529e74edf0d3ba77895c4527c.stex"
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource( 9 )
@@ -38,7 +37,7 @@ __meta__ = {
 margin_left = 469.0
 margin_top = 100.0
 margin_right = 810.0
-margin_bottom = 707.0
+margin_bottom = 700.0
 size_flags_horizontal = 4
 custom_constants/separation = 30
 
