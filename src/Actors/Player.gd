@@ -13,6 +13,9 @@ var knocked_back = false
 var knock_back_dir = 1
 var knock_back_Vect = Vector2(800, -600)
 
+var invincible = false
+var last_hit_enemy
+
 var facing_left = 1
 
 func _ready():
@@ -42,27 +45,34 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	#_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 	print("Attack")
 
+func hurt(body: PhysicsBody2D) -> void:
+	if not invincible and is_instance_valid(body):
+		print("INVINCIBLE") #Play animation / effects here
+		global.lives -= 1
+		invincible = true
+		knocked_back = true
+
+		if self.global_transform.origin.x < body.global_transform.origin.x:
+			knock_back_dir = -1
+			print("right")
+		else:
+			knock_back_dir = 1
+			print("left")
+	
+		$knockedBackTimer.start()
+		$playerInvincibilityTimer.start()
+		_velocity.x = knock_back_Vect.x * knock_back_dir
+		_velocity.y = knock_back_Vect.y
+	
+		get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
+		#queue_free()
+		if global.lives == 0:
+			queue_free()
+			
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-	global.lives -= 1
-
-	knocked_back = true
-
-	if self.global_transform.origin.x < body.global_transform.origin.x:
-		knock_back_dir = -1
-		print("right")
-	else:
-		knock_back_dir = 1
-		print("left")
-
-	$knockedBackTimer.start()
-	_velocity.x = knock_back_Vect.x * knock_back_dir
-	_velocity.y = knock_back_Vect.y
-
-	get_parent().get_node("CanvasLayer/CanvasLayer/HUD2/Lives").update_counter(str(global.lives))
-	#queue_free()
-	if global.lives == 0:
-		queue_free()
-
+	last_hit_enemy = body
+	hurt(body)
+	
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
@@ -132,3 +142,9 @@ func _on_MeleeDetector_area_entered(area):
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	anim_player.play("idle")
+
+
+func _on_playerInvincibilityTimer_timeout():
+	invincible = false
+	if get_node("yuvia/EnemyDetector").get_overlapping_bodies().size() != 0:
+		hurt(last_hit_enemy)

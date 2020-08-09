@@ -238,7 +238,7 @@ material = SubResource( 6 )
 position = Vector2( 609, 300 )
 speed = Vector2( 400, 1400 )
 
-[node name="Camera2D" parent="Player" index="2"]
+[node name="Camera2D" parent="Player" index="4"]
 limit_right = 2963
 
 [node name="dashTimer" type="Timer" parent="Player"]
@@ -248,9 +248,15 @@ one_shot = true
 
 [node name="dashCooldownTimer" type="Timer" parent="Player"]
 process_mode = 0
+one_shot = true
 
 [node name="knockedBackTimer" type="Timer" parent="Player"]
 wait_time = 0.3
+one_shot = true
+
+[node name="playerInvincibilityTimer" type="Timer" parent="Player"]
+wait_time = 0.8
+one_shot = true
 
 [node name="Coins" type="Node" parent="."]
 
@@ -298,5 +304,6 @@ process_material = SubResource( 13 )
 [connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
 [connection signal="timeout" from="Player/dashCooldownTimer" to="Player" method="_on_dashCooldownTimer_timeout"]
 [connection signal="timeout" from="Player/knockedBackTimer" to="Player" method="_on_knockedBackTimer_timeout"]
+[connection signal="timeout" from="Player/playerInvincibilityTimer" to="Player" method="_on_playerInvincibilityTimer_timeout"]
 
 [editable path="Player"]
