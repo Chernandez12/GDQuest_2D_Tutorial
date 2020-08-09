@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shooter_Spirit.png-936c9eea6ecd4d9de4025c38d78255f1.stex"
+path="res://.import/caster.png-8f7921ed9933cca2609f85561b2d29c5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Shooter_Spirit.png"
-dest_files=[ "res://.import/Shooter_Spirit.png-936c9eea6ecd4d9de4025c38d78255f1.stex" ]
+source_file="res://assets/enemies/caster.png"
+dest_files=[ "res://.import/caster.png-8f7921ed9933cca2609f85561b2d29c5.stex" ]
 
 [params]
 

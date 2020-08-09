@@ -14,9 +14,9 @@ var knockBackVector = Vector2(600, -600)
 func _process(delta):
 	if is_instance_valid( player ):
 		if global.get("player").global_position.x - self.global_position.x > 0:
-			get_node("Sprite").flip_h = true
+			get_node("CollisionShape2D/Sprite").flip_h = true
 		else:
-			get_node("Sprite").flip_h = false
+			get_node("CollisionShape2D/Sprite").flip_h = false
 		if abs(self.global_transform.origin.x - player.global_transform.origin.x) > 400 and can_fire:
 			timer.start()
 			can_fire = false
