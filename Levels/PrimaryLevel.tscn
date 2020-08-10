@@ -177,7 +177,6 @@ layer = -5
 scroll_base_scale = Vector2( 0.1, 0.1 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/FBG"]
-visible = false
 position = Vector2( 100, 100 )
 
 [node name="BG_1" type="Sprite" parent="Parallax/FBG/ParallaxLayer"]
@@ -340,14 +339,14 @@ layer = 10
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Front"]
 
 [node name="CG-Spire1" type="Sprite" parent="Front/ParallaxLayer2"]
-position = Vector2( 3900, 900 )
-scale = Vector2( 0.7, 0.7 )
+position = Vector2( 3588, 800 )
+scale = Vector2( 1.2, 1.2 )
 z_index = 2
 texture = ExtResource( 14 )
 
 [node name="CG-Spire2" type="Sprite" parent="Front/ParallaxLayer2"]
-position = Vector2( 5000, 900 )
-scale = Vector2( 0.7, 0.7 )
+position = Vector2( 5302, 800 )
+scale = Vector2( 1.2, 1.2 )
 z_index = 2
 texture = ExtResource( 14 )
 flip_h = true
@@ -403,20 +402,22 @@ texture = ExtResource( 2 )
 position = Vector2( 677.408, 618.011 )
 texture = ExtResource( 15 )
 
-[node name="RockWall" type="Sprite" parent="CharacterGround/ParallaxLayer"]
-position = Vector2( 4500, 939.948 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 16 )
-
 [node name="ArenaRock1" type="Sprite" parent="CharacterGround/ParallaxLayer"]
-position = Vector2( 3500, 920 )
+position = Vector2( 3331, 920 )
+rotation = 0.0698132
 texture = ExtResource( 17 )
 
 [node name="ArenaRock2" type="Sprite" parent="CharacterGround/ParallaxLayer"]
-position = Vector2( 5200, 900 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
+position = Vector2( 5482, 900 )
+rotation = 0.0174533
 texture = ExtResource( 17 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="CharacterGround"]
+
+[node name="RockWall" type="Sprite" parent="CharacterGround/ParallaxLayer2"]
+position = Vector2( 4503, 869.948 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 16 )
 
 [node name="BG-1" type="ParallaxBackground" parent="."]
 layer = -2
