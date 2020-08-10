@@ -95,7 +95,7 @@ __meta__ = {
 "_edit_horizontal_guides_": [ -28.4979 ],
 "_edit_vertical_guides_": [ -284.427 ]
 }
-health = 5
+health = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -10.8372 )

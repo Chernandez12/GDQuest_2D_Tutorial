@@ -857,8 +857,7 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="Swipe" type="Sprite" parent="yuvia/MeleeDetector"]
-visible = false
-self_modulate = Color( 0.623529, 0.937255, 1, 0.145098 )
+self_modulate = Color( 0.623529, 0.937255, 1, 1 )
 position = Vector2( 300.247, -85.9424 )
 rotation = -0.396277
 scale = Vector2( 1.59492, 1.0821 )

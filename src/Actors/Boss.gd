@@ -1,6 +1,6 @@
 extends "res://src/Actors/Actor.gd"
 
-export var health = 3
+export var health = 15
 onready var player = global.get("player")
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 onready var skull = get_node("CollisionShape2D/CasterHitbox/skull")
