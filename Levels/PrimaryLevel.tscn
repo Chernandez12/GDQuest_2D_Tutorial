@@ -1,15 +1,15 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/Level/BG1.png" type="Texture" id=1]
 [ext_resource path="res://assets/Level/Rock.png" type="Texture" id=2]
 [ext_resource path="res://assets/Level/CG1.png" type="Texture" id=3]
 [ext_resource path="res://assets/Level/FBG.png" type="Texture" id=4]
-[ext_resource path="res://src/Shaders/fog.shader" type="Shader" id=5]
+[ext_resource path="res://assets/Level/Tree_Level/TCG.png" type="Texture" id=5]
 [ext_resource path="res://src/HUD.gd" type="Script" id=6]
-[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Level/Tree_Level/W.png" type="Texture" id=7]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Actors/Caster.tscn" type="PackedScene" id=9]
-[ext_resource path="res://icon.png" type="Texture" id=10]
+[ext_resource path="res://assets/Level/Tree_Level/ENT1.png" type="Texture" id=9]
+[ext_resource path="res://assets/Level/Tree_Level/ENT2.png" type="Texture" id=10]
 [ext_resource path="res://assets/tileset.png" type="Texture" id=11]
 [ext_resource path="res://assets/Level/BG2.png" type="Texture" id=12]
 [ext_resource path="res://assets/Level/CG2.png" type="Texture" id=13]
@@ -17,16 +17,14 @@
 [ext_resource path="res://assets/Level/Tree.png" type="Texture" id=15]
 [ext_resource path="res://assets/Level/RockWall.png" type="Texture" id=16]
 [ext_resource path="res://assets/Level/ArenaRock1.png" type="Texture" id=17]
-
-[sub_resource type="StreamTexture" id=1]
-flags = 4
-load_path = "res://.import/278a3d19175e0856d065ee439e0cb448.png-b5fa31cf859ed300f772b45528f95874.stex"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 5 )
-shader_param/color = Vector3( 1, 1, 1 )
-shader_param/OCTAVES = 4
-shader_param/fog_speed = 0.2
+[ext_resource path="res://src/Actors/Platform.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/Level/Tree2.png" type="Texture" id=19]
+[ext_resource path="res://assets/Level/Rock2.png" type="Texture" id=20]
+[ext_resource path="res://assets/Level/Tree3.png" type="Texture" id=21]
+[ext_resource path="res://assets/Level/Tree_Level/TBG.png" type="Texture" id=22]
+[ext_resource path="res://assets/Level/Tree_Level/EXIT2.png" type="Texture" id=23]
+[ext_resource path="res://assets/Level/Tree_Level/EXIT1.png" type="Texture" id=24]
+[ext_resource path="res://assets/Level/Tree_Level/Square3.png" type="Texture" id=25]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
@@ -91,45 +89,6 @@ points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
 2/shapes = [  ]
 2/z_index = 0
 
-[sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.133333, 1 )
-colors = PoolColorArray( 0.995202, 1, 0.113281, 1, 0.395962, 0.820312, 0.00961304, 0.543065, 0.0823529, 0.235294, 0.00392157, 0.0666667 )
-
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
-
-[sub_resource type="Curve" id=8]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.4736 ), -2.00503, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
-
-[sub_resource type="Curve" id=10]
-_data = [ Vector2( 0.016835, 0.98972 ), 0.0, 0.404544, 0, 0, Vector2( 1, 0.34732 ), -1.0592, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
-
-[sub_resource type="ParticlesMaterial" id=12]
-trail_size_modifier = SubResource( 11 )
-emission_shape = 1
-emission_sphere_radius = 10.31
-flag_disable_z = true
-spread = 10.34
-gravity = Vector3( 0, 0, 1000 )
-initial_velocity = 84.48
-initial_velocity_random = 1.0
-angular_velocity = -411.38
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 13.51
-linear_accel_random = 0.92
-angle = 45.0
-scale = 12.5
-scale_curve = SubResource( 9 )
-color_ramp = SubResource( 7 )
-
 [sub_resource type="CanvasItemMaterial" id=13]
 blend_mode = 1
 
@@ -147,30 +106,6 @@ layer = -5
 scroll_base_scale = Vector2( 0.1, 0.1 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-
-[node name="Sprite" type="Sprite" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-modulate = Color( 0.270588, 0.447059, 0.603922, 0.580392 )
-position = Vector2( 2115.7, -1505.11 )
-scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 1 )
-
-[node name="Sprite2" type="Sprite" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-modulate = Color( 0.270588, 0.447059, 0.603922, 0.580392 )
-position = Vector2( 1200, -500 )
-scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 1 )
-
-[node name="Sprite3" type="Sprite" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-modulate = Color( 0.270588, 0.447059, 0.603922, 0.580392 )
-position = Vector2( 77.8296, -1631.07 )
-scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 1 )
-
-[node name="Sprite4" type="Sprite" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-modulate = Color( 0.270588, 0.447059, 0.603922, 0.580392 )
-position = Vector2( 1049.45, -1474.06 )
-scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 1 )
 
 [node name="FBG" type="ParallaxBackground" parent="Parallax"]
 layer = -5
@@ -250,12 +185,6 @@ margin_bottom = 20.0
 text = "5"
 script = ExtResource( 6 )
 
-[node name="fog" type="Sprite" parent="CanvasLayer"]
-material = SubResource( 2 )
-position = Vector2( -1678.56, -955.974 )
-scale = Vector2( 20, 20 )
-texture = ExtResource( 10 )
-
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
 position = Vector2( 524, 24 )
@@ -263,30 +192,17 @@ tile_set = SubResource( 5 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -655353, 0, 0, -589817, 0, 0, -524280, 0, 0, -458744, 0, 0, -458715, 0, 0, -393209, 0, 0, -393179, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327645, 0, 0, -327644, 0, 0, -327643, 0, 0, -262130, 0, 0, -262129, 0, 0, -262128, 0, 0, -262127, 0, 0, -262126, 0, 0, -262125, 0, 0, -262124, 0, 0, -262123, 0, 0, -262122, 0, 0, -262121, 0, 0, -262120, 0, 0, -262119, 0, 0, -262118, 0, 0, -262117, 0, 0, -262116, 0, 0, -262115, 0, 0, -262114, 0, 0, -262113, 0, 0, -262112, 0, 0, -262111, 0, 0, -262110, 0, 0, 1114102, 0, 0, 1114103, 0, 0, 1114104, 0, 0, 1114105, 0, 0, 1114106, 0, 0, 1114107, 0, 0, 1114108, 0, 0, 1114109, 0, 0, 1114110, 0, 0, 1114111, 0, 0, 1048576, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 0, 0, 1048586, 0, 0, 1048587, 0, 0, 1048588, 0, 0, 1048589, 0, 0, 1048590, 0, 0, 1048591, 0, 0, 1048592, 0, 0, 1048593, 0, 0, 1048595, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 0, 0, 1048599, 0, 0, 1048600, 0, 0, 1048601, 0, 0, 1048602, 0, 0, 1048603, 0, 0, 1048604, 0, 0, 1048605, 0, 0, 1048606, 0, 0, 1048607, 0, 0, 1048608, 0, 0, 1048610, 0, 0, 1048611, 0, 0, 1048613, 0, 0, 1048614, 0, 0, 1048615, 0, 0, 1048616, 0, 0, 1048617, 0, 0, 1048618, 0, 0, 1048619, 0, 0, 1048620, 0, 0, 1048621, 0, 0, 1048622, 0, 0, 1048623, 0, 0, 1048624, 0, 0, 1048626, 0, 0, 1048627, 0, 0, 1048628, 0, 0, 1048629, 0, 0, 1048630, 0, 0, 1048631, 0, 0, 1048633, 0, 0, 1048634, 0, 0, 1048635, 0, 0, 1048636, 0, 0, 1048637, 0, 0, 1048638, 0, 0, 1048639, 0, 0, 1048640, 0, 0, 1048641, 0, 0, 1048642, 0, 0, 1048643, 0, 0, 1048644, 0, 0, 1048645, 0, 0, 1048646, 0, 0, 1048647, 0, 0, 1048648, 0, 0, 1048649, 0, 0, 1048650, 0, 0, 1048651, 0, 0, 1048652, 0, 0, 1048653, 0, 0, 1048654, 0, 0, 1048655, 0, 0, 1048656, 0, 0, 1048657, 0, 0, 1048658, 0, 0, 1048659, 0, 0, 1048660, 0, 0, 1048661, 0, 0, 1048662, 0, 0, 1048663, 0, 0, 1048664, 0, 0, 1048665, 0, 0, 1048666, 0, 0, 1048667, 0, 0, 1048668, 0, 0, 1048669, 0, 0, 1048670, 0, 0, 1048671, 0, 0, 1048672, 0, 0, 1048673, 0, 0, 1048674, 0, 0, 1048675, 0, 0, 1048676, 0, 0, 1048677, 0, 0, 1048678, 0, 0, 1048679, 0, 0, 1048680, 0, 0, 1048681, 0, 0, 1048682, 0, 0, 1048683, 0, 0, 1048684, 0, 0 )
+tile_data = PoolIntArray( -655353, 0, 0, -589817, 0, 0, -524280, 0, 0, -458744, 0, 0, -458715, 0, 0, -393209, 0, 0, -393179, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327645, 0, 0, -327644, 0, 0, -327643, 0, 0, -262130, 0, 0, -262129, 0, 0, -262128, 0, 0, -262127, 0, 0, -262126, 0, 0, -262125, 0, 0, -262124, 0, 0, -262123, 0, 0, -262122, 0, 0, -262121, 0, 0, -262120, 0, 0, -262119, 0, 0, -262118, 0, 0, -262117, 0, 0, -262116, 0, 0, -262115, 0, 0, -262114, 0, 0, -262113, 0, 0, -262112, 0, 0, -262111, 0, 0, -262110, 0, 0, 196756, 0, 0, 196758, 0, 0, 196759, 0, 0, 196760, 0, 0, 196761, 0, 0, 196762, 0, 0, 196763, 0, 0, 196765, 0, 0, 196766, 0, 0, 196767, 0, 0, 196768, 0, 0, 196769, 0, 0, 196770, 0, 0, 196771, 0, 0, 196772, 0, 0, 196773, 0, 0, 393361, 0, 0, 458897, 0, 0, 589969, 0, 0, 655505, 0, 0, 721041, 0, 0, 786577, 0, 0, 852113, 0, 0, 917649, 0, 0, 983185, 0, 0, 1114102, 0, 0, 1114103, 0, 0, 1114104, 0, 0, 1114105, 0, 0, 1114106, 0, 0, 1114107, 0, 0, 1114108, 0, 0, 1114109, 0, 0, 1114110, 0, 0, 1114111, 0, 0, 1048576, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 0, 0, 1048586, 0, 0, 1048587, 0, 0, 1048588, 0, 0, 1048589, 0, 0, 1048590, 0, 0, 1048591, 0, 0, 1048592, 0, 0, 1048593, 0, 0, 1048595, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 0, 0, 1048599, 0, 0, 1048600, 0, 0, 1048601, 0, 0, 1048602, 0, 0, 1048603, 0, 0, 1048604, 0, 0, 1048605, 0, 0, 1048606, 0, 0, 1048607, 0, 0, 1048608, 0, 0, 1048610, 0, 0, 1048611, 0, 0, 1048613, 0, 0, 1048614, 0, 0, 1048615, 0, 0, 1048616, 0, 0, 1048617, 0, 0, 1048618, 0, 0, 1048619, 0, 0, 1048620, 0, 0, 1048621, 0, 0, 1048622, 0, 0, 1048623, 0, 0, 1048624, 0, 0, 1048626, 0, 0, 1048627, 0, 0, 1048628, 0, 0, 1048629, 0, 0, 1048630, 0, 0, 1048631, 0, 0, 1048633, 0, 0, 1048634, 0, 0, 1048635, 0, 0, 1048636, 0, 0, 1048637, 0, 0, 1048638, 0, 0, 1048639, 0, 0, 1048640, 0, 0, 1048641, 0, 0, 1048642, 0, 0, 1048643, 0, 0, 1048644, 0, 0, 1048645, 0, 0, 1048646, 0, 0, 1048647, 0, 0, 1048648, 0, 0, 1048649, 0, 0, 1048650, 0, 0, 1048651, 0, 0, 1048652, 0, 0, 1048653, 0, 0, 1048654, 0, 0, 1048655, 0, 0, 1048656, 0, 0, 1048657, 0, 0, 1048658, 0, 0, 1048659, 0, 0, 1048660, 0, 0, 1048661, 0, 0, 1048662, 0, 0, 1048663, 0, 0, 1048664, 0, 0, 1048665, 0, 0, 1048666, 0, 0, 1048667, 0, 0, 1048668, 0, 0, 1048669, 0, 0, 1048670, 0, 0, 1048671, 0, 0, 1048672, 0, 0, 1048673, 0, 0, 1048674, 0, 0, 1048675, 0, 0, 1048676, 0, 0, 1048677, 0, 0, 1048678, 0, 0, 1048679, 0, 0, 1048680, 0, 0, 1048681, 0, 0, 1048682, 0, 0, 1048683, 0, 0, 1048684, 0, 0, 1048686, 0, 0, 1048687, 0, 0, 1048689, 0, 0, 1048690, 0, 0, 1048691, 0, 0, 1048692, 0, 0, 1048693, 0, 0, 1048694, 0, 0, 1048695, 0, 0, 1048696, 0, 0, 1048697, 0, 0, 1048698, 0, 0, 1048699, 0, 0, 1048700, 0, 0, 1048701, 0, 0, 1048702, 0, 0, 1048703, 0, 0, 1048704, 0, 0, 1048706, 0, 0, 1048707, 0, 0, 1048708, 0, 0, 1048709, 0, 0, 1048710, 0, 0, 1048711, 0, 0, 1048712, 0, 0, 1048713, 0, 0, 1048714, 0, 0, 1048715, 0, 0, 1048716, 0, 0, 1048718, 0, 0, 1048719, 0, 0, 1048720, 0, 0, 1048721, 0, 0, 1048722, 0, 0, 1048723, 0, 0, 1048724, 0, 0, 1048725, 0, 0, 1048726, 0, 0, 1048727, 0, 0, 1048728, 0, 0, 1048729, 0, 0, 1048730, 0, 0, 1048731, 0, 0, 1048732, 0, 0, 1048733, 0, 0, 1048734, 0, 0, 1048735, 0, 0, 1048736, 0, 0, 1048737, 0, 0, 1048738, 0, 0, 1048739, 0, 0, 1048740, 0, 0, 1048741, 0, 0, 1048742, 0, 0, 1048743, 0, 0, 1048744, 0, 0, 1048746, 0, 0, 1048747, 0, 0, 1048748, 0, 0, 1048749, 0, 0, 1048750, 0, 0, 1048752, 0, 0, 1048753, 0, 0, 1048754, 0, 0, 1048755, 0, 0, 1048756, 0, 0, 1048757, 0, 0, 1048758, 0, 0, 1048759, 0, 0, 1048760, 0, 0, 1048761, 0, 0, 1048762, 0, 0, 1048763, 0, 0, 1048764, 0, 0, 1048765, 0, 0, 1048767, 0, 0, 1048768, 0, 0, 1048769, 0, 0, 1048770, 0, 0, 1048771, 0, 0, 1048772, 0, 0, 1048773, 0, 0, 1048774, 0, 0, 1048775, 0, 0, 1048776, 0, 0, 1048777, 0, 0, 1048778, 0, 0, 1048779, 0, 0, 1048780, 0, 0, 1048781, 0, 0, 1048783, 0, 0, 1048784, 0, 0, 1048785, 0, 0, 1048786, 0, 0, 1048787, 0, 0, 1048788, 0, 0, 1048789, 0, 0, 1048790, 0, 0, 1048791, 0, 0 )
+
+[node name="ENT1" type="Sprite" parent="TileMap"]
+position = Vector2( 8912.01, 429.666 )
+texture = ExtResource( 9 )
 
 [node name="Coins" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 1638.27, -589.007 )
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 2198.12, -455.409 )
-
-[node name="Caster" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 1104.71, -877.618 )
-
 [node name="Effects" type="Node" parent="."]
-
-[node name="Flame" type="Particles2D" parent="Effects"]
-position = Vector2( 1975.71, -905.403 )
-rotation = -1.5708
-amount = 100
-lifetime = 1.5
-speed_scale = 1.5
-process_material = SubResource( 12 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -351,10 +267,26 @@ z_index = 2
 texture = ExtResource( 14 )
 flip_h = true
 
+[node name="ENT1" type="Sprite" parent="Front/ParallaxLayer2"]
+position = Vector2( 8009, 600 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="ENT1-2" type="Sprite" parent="Front/ParallaxLayer2"]
+position = Vector2( 9841, 600 )
+scale = Vector2( -0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="EXIT1" type="Sprite" parent="Front/ParallaxLayer2"]
+position = Vector2( 9768.86, 170.415 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 24 )
+
 [node name="CharacterGround" type="ParallaxBackground" parent="."]
 layer = -1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="CharacterGround"]
+z_index = -6
 
 [node name="CG1" type="Sprite" parent="CharacterGround/ParallaxLayer"]
 position = Vector2( 150, 770 )
@@ -392,6 +324,18 @@ scale = Vector2( 0.25, 0.25 )
 z_index = 2
 texture = ExtResource( 13 )
 
+[node name="CG7" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 7650, 770 )
+scale = Vector2( 0.25, 0.25 )
+z_index = 2
+texture = ExtResource( 3 )
+
+[node name="CG8" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 10159, -94.6169 )
+scale = Vector2( 0.25, 0.25 )
+z_index = 2
+texture = ExtResource( 3 )
+
 [node name="CG-Rock" type="Sprite" parent="CharacterGround/ParallaxLayer"]
 position = Vector2( 105, 951 )
 rotation = -0.0872665
@@ -412,11 +356,86 @@ position = Vector2( 5482, 900 )
 rotation = 0.0174533
 texture = ExtResource( 17 )
 
+[node name="TCG" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8900, 610 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="W" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8559, 443 )
+scale = Vector2( -0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="W7" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8559, 1057 )
+scale = Vector2( -0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="W3" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8559, -171 )
+scale = Vector2( -0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="W5" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8559, -785 )
+scale = Vector2( -0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="W2" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 9291, 559 )
+scale = Vector2( 0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="W4" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 9291, -387 )
+scale = Vector2( 0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="W6" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 9291, -1001 )
+scale = Vector2( 0.3, 0.3 )
+z_index = -3
+texture = ExtResource( 7 )
+
+[node name="ENT2" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8029, 800 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="TBG" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8915.31, 469.724 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -10
+texture = ExtResource( 22 )
+
+[node name="TBG2" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 8915.31, -554.276 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -10
+texture = ExtResource( 22 )
+
+[node name="EXIT2" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 9702.06, -102.847 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 23 )
+
+[node name="Square" type="Sprite" parent="CharacterGround/ParallaxLayer"]
+position = Vector2( 10161.4, 654.147 )
+scale = Vector2( 1.21795, 0.873825 )
+texture = ExtResource( 25 )
+
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="CharacterGround"]
 
 [node name="RockWall" type="Sprite" parent="CharacterGround/ParallaxLayer2"]
 position = Vector2( 4503, 869.948 )
 scale = Vector2( 1.1, 1.1 )
+z_index = -5
 texture = ExtResource( 16 )
 
 [node name="BG-1" type="ParallaxBackground" parent="."]
@@ -493,6 +512,27 @@ position = Vector2( 4338, 780 )
 scale = Vector2( 0.25, 0.25 )
 z_index = 1
 texture = ExtResource( 12 )
+
+[node name="Tree-BG1" type="Sprite" parent="BG-1/ParallaxLayer"]
+position = Vector2( 96.4286, 772.857 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 19 )
+
+[node name="Tree-BG2" type="Sprite" parent="BG-1/ParallaxLayer"]
+position = Vector2( 996.429, 691.429 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 21 )
+
+[node name="Tree-BG3" type="Sprite" parent="BG-1/ParallaxLayer"]
+position = Vector2( 1920.71, 545.714 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 15 )
+
+[node name="Rock-BG4" type="Sprite" parent="BG-1/ParallaxLayer"]
+position = Vector2( 1731.43, 824.285 )
+scale = Vector2( -0.5, 0.5 )
+z_index = 1
+texture = ExtResource( 2 )
 
 [node name="BG-2" type="ParallaxBackground" parent="."]
 layer = -3
@@ -571,6 +611,38 @@ position = Vector2( 2802, 780 )
 scale = Vector2( 0.25, 0.25 )
 z_index = 1
 texture = ExtResource( 1 )
+
+[node name="Rock-BG1" type="Sprite" parent="BG-2/ParallaxLayer"]
+position = Vector2( 1562.86, 853.857 )
+scale = Vector2( -0.5, 0.5 )
+texture = ExtResource( 20 )
+
+[node name="Rock-BG2" type="Sprite" parent="BG-2/ParallaxLayer"]
+position = Vector2( 522.144, 871.001 )
+scale = Vector2( -0.5, 0.5 )
+texture = ExtResource( 20 )
+
+[node name="Tree-BG1" type="Sprite" parent="BG-2/ParallaxLayer"]
+position = Vector2( 768.572, 756.715 )
+scale = Vector2( -0.5, 0.5 )
+texture = ExtResource( 21 )
+
+[node name="Tree-BG2" type="Sprite" parent="BG-2/ParallaxLayer"]
+position = Vector2( 368.571, 802.429 )
+scale = Vector2( -0.5, 0.5 )
+texture = ExtResource( 19 )
+
+[node name="Platform1" parent="." instance=ExtResource( 18 )]
+position = Vector2( 4350, 821 )
+mode = 1
+
+[node name="Platform2" parent="." instance=ExtResource( 18 )]
+position = Vector2( 5350, 800 )
+mode = 1
+
+[node name="Platform3" parent="." instance=ExtResource( 18 )]
+position = Vector2( 4850, 600 )
+mode = 1
 [connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
 [connection signal="timeout" from="Player/dashCooldownTimer" to="Player" method="_on_dashCooldownTimer_timeout"]
 [connection signal="timeout" from="Player/knockedBackTimer" to="Player" method="_on_knockedBackTimer_timeout"]
