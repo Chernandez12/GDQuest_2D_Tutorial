@@ -20,6 +20,7 @@ var facing_left = 1
 
 func _ready():
 	global.set("player", self)
+	play_audio("res://assets/Sounds/Yuvia's Lament.wav")
 	
 func _process(delta):
 
@@ -31,6 +32,7 @@ func _process(delta):
 		yuvia.scale.x = 0.2
 	if Input.is_action_just_pressed("attack"):
 		attack_player.play("melee")
+		play_audio("res://assets/Sounds/SFX/swing.wav")
 	if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):
 		anim_player.play("idle")
 	if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
@@ -40,6 +42,11 @@ func _process(delta):
 	elif _velocity.y > 0:
 		anim_player.play("falling")
 
+func play_audio(sound):
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load(sound)
+	player.play()
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	#_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
@@ -90,6 +97,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("dash") and can_dash and not knocked_back:
 		dashing = true
+		play_audio("res://assets/Sounds/SFX/dash.wav")
 		dash()
 
 
@@ -137,6 +145,7 @@ func _on_dashTimer_timeout():
 
 func _on_dashCooldownTimer_timeout():
 	can_dash = true
+	play_audio("res://assets/Sounds/SFX/dash_meter.wav")
 
 func _on_knockedBackTimer_timeout():
 	knocked_back = false

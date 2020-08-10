@@ -23,10 +23,17 @@ func _process(delta):
 	
 func fire():
 	can_fire = true
+	play_audio("res://assets/Sounds/SFX/fire.wav")
 	timer.set_wait_time(rand_range(0.75, 2))
 	var projectile = bullet.instance()
 	get_parent().add_child(projectile)
 	projectile.spawn(self.global_position)
+
+func play_audio(sound):
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load(sound)
+	player.play()
 
 func _ready():
 	timer.set_wait_time(rand_range(0.5, 1.5))

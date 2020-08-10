@@ -803,7 +803,7 @@ script = ExtResource( 1 )
 speed = Vector2( 800, 1400 )
 
 [node name="yuvia" type="Node2D" parent="."]
-modulate = Color( 1, 0.992157, 0.992157, 1 )
+modulate = Color( 0.584314, 0.0235294, 0.0235294, 1 )
 position = Vector2( -11.7437, -49.9107 )
 scale = Vector2( 0.2, 0.2 )
 z_index = 1
@@ -816,7 +816,7 @@ scale = Vector2( 1, 1.255 )
 texture = ExtResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="yuvia/Tail"]
-position = Vector2( -23.0696, 244.976 )
+position = Vector2( -19.0855, 244.976 )
 rotation = 1.5708
 texture = ExtResource( 3 )
 color = Color( 0.737255, 0.729412, 1, 1 )

@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+
 func _ready():
 	set_visible(false)
 
@@ -9,14 +10,14 @@ func _input(event):
 		get_tree().paused = !get_tree().paused # toggle pause status
 
 
-func _on_Button_pressed():
+func _on_ContinueButton_pressed():
 	get_tree().paused = false
-	set_visible(false)
-	
+	set_visible(false)	
+
+
 func set_visible(is_visible):
 	for node in get_children():
 		node.visible = is_visible
-	
 
 
 func _on_FullscreenButton_pressed():
