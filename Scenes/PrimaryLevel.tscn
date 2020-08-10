@@ -222,13 +222,24 @@ position = Vector2( 9066.82, 665.172 )
 [node name="Player" parent="." instance=ExtResource( 8 )]
 light_mask = 0
 material = SubResource( 4 )
-position = Vector2( 14000, 0 )
+position = Vector2( 1000, 800 )
 z_index = 5
 z_as_relative = false
 speed = Vector2( 400, 1400 )
 
 [node name="yuvia" parent="Player" index="0"]
 z_as_relative = true
+
+[node name="Tail" parent="Player/yuvia" index="0"]
+modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 5.984, -86.045 )
+scale = Vector2( 1, 1.20993 )
+
+[node name="Body" parent="Player/yuvia" index="1"]
+scale = Vector2( 1.00061, 1 )
+
+[node name="Head" parent="Player/yuvia" index="2"]
+position = Vector2( 133.371, 53.8778 )
 
 [node name="Camera2D" parent="Player" index="4"]
 limit_right = 16000
@@ -482,22 +493,27 @@ texture = ExtResource( 16 )
 [node name="Node2D2" parent="CharacterGround" instance=ExtResource( 35 )]
 position = Vector2( 8941.28, 837.813 )
 scale = Vector2( 0.2, 0.2 )
+mode = 1
 
 [node name="Node2D3" parent="CharacterGround" instance=ExtResource( 35 )]
 position = Vector2( 8637.12, 674.498 )
 scale = Vector2( 0.2, 0.2 )
+mode = 1
 
 [node name="Node2D4" parent="CharacterGround" instance=ExtResource( 35 )]
 position = Vector2( 9198.99, 481.216 )
 scale = Vector2( 0.2, 0.2 )
+mode = 1
 
 [node name="Node2D5" parent="CharacterGround" instance=ExtResource( 35 )]
 position = Vector2( 8650.61, 290.931 )
 scale = Vector2( 0.2, 0.2 )
+mode = 1
 
 [node name="Node2D6" parent="CharacterGround" instance=ExtResource( 35 )]
 position = Vector2( 9133.06, 94.6531 )
 scale = Vector2( 0.2, 0.2 )
+mode = 1
 
 [node name="BG-1" type="ParallaxBackground" parent="."]
 layer = -2
