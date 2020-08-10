@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/HUD.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Actors/Caster.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Objects/WallEnemyCounter.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -301,6 +302,9 @@ amount = 100
 lifetime = 1.5
 speed_scale = 1.5
 process_material = SubResource( 13 )
+
+[node name="Wall" parent="." instance=ExtResource( 10 )]
+position = Vector2( 791.968, 222.853 )
 [connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
 [connection signal="timeout" from="Player/dashCooldownTimer" to="Player" method="_on_dashCooldownTimer_timeout"]
 [connection signal="timeout" from="Player/knockedBackTimer" to="Player" method="_on_knockedBackTimer_timeout"]
