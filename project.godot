@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="2D Platformer Demo"
-run/main_scene="res://Scenes/LevelTemplate.tscn"
+run/main_scene="res://Scenes/PrimaryLevel.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -37,8 +37,9 @@ Pause="*res://autoloads/Pause.tscn"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

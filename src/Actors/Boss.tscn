@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Actors/Caster.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/reaper.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/skull.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 199.438, 282.663 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 54.4828
+height = 111.36
+
+[sub_resource type="Animation" id=3]
+resource_name = "moving"
+length = 30.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 4, 8.9, 12, 17.5, 19.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 105.066, -113.817 ), Vector2( 105.066, -113.817 ), Vector2( 178.565, 57.6797 ), Vector2( 178.565, 57.6797 ), Vector2( 141.815, 167.927 ), Vector2( 141.815, 167.927 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.364706, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1.56917 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "moving"
+length = 30.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/CasterHitbox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.2, 11.2, 14.3, 18.4, 20.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 182.648, 43.3883 ), Vector2( 182.648, 43.3883 ), Vector2( 105.066, -113.817 ), Vector2( 105.066, -113.817 ), Vector2( 164.611, 140.567 ), Vector2( 164.611, 140.567 ) ]
+}
+
+[node name="Caster" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -28.4979 ],
+"_edit_vertical_guides_": [ -284.427 ]
+}
+health = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10.8372 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+
+[node name="CasterHitbox" type="Area2D" parent="CollisionShape2D"]
+position = Vector2( 106.116, -105.767 )
+collision_layer = 2
+
+[node name="skull" type="Sprite" parent="CollisionShape2D/CasterHitbox"]
+position = Vector2( -284.426, -56.6722 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/CasterHitbox"]
+position = Vector2( -283.786, -26.5411 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/CasterHitbox"]
+autoplay = "moving"
+anims/moving = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/damage = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/moving = SubResource( 6 )
+[connection signal="area_entered" from="CollisionShape2D/CasterHitbox" to="." method="_on_CasterHitbox_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
