@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://assets/Level/BG1.png" type="Texture" id=1]
 [ext_resource path="res://assets/Level/Rock.png" type="Texture" id=2]
@@ -31,6 +31,9 @@
 [ext_resource path="res://assets/Level/Boss_Arena/ArenaStone1.png" type="Texture" id=29]
 [ext_resource path="res://assets/Level/Boss_Arena/ArenaStone2.png" type="Texture" id=30]
 [ext_resource path="res://assets/Level/Boss_Arena/ArenaStone3.png" type="Texture" id=31]
+[ext_resource path="res://src/Actors/Caster.tscn" type="PackedScene" id=32]
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=33]
+[ext_resource path="res://src/Actors/Boss.tscn" type="PackedScene" id=34]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 160, 0, 160, 80, 0, 80 )
@@ -215,24 +218,13 @@ texture = ExtResource( 9 )
 [node name="Player" parent="." instance=ExtResource( 8 )]
 light_mask = 0
 material = SubResource( 4 )
-position = Vector2( 11000, 0 )
+position = Vector2( 2000, 0 )
 z_index = 5
 z_as_relative = false
 speed = Vector2( 400, 1400 )
 
 [node name="yuvia" parent="Player" index="0"]
 z_as_relative = true
-
-[node name="Tail" parent="Player/yuvia" index="0"]
-modulate = Color( 1, 1, 1, 0.560784 )
-position = Vector2( 5.984, -86.045 )
-scale = Vector2( 1, 1.20993 )
-
-[node name="Body" parent="Player/yuvia" index="1"]
-scale = Vector2( 1.00061, 1 )
-
-[node name="Head" parent="Player/yuvia" index="2"]
-position = Vector2( 133.371, 53.8778 )
 
 [node name="Camera2D" parent="Player" index="4"]
 limit_right = 16000
@@ -731,6 +723,36 @@ mode = 1
 [node name="Platform3" parent="." instance=ExtResource( 18 )]
 position = Vector2( 4850, 600 )
 mode = 1
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Caster" parent="Node" instance=ExtResource( 32 )]
+position = Vector2( 3923.24, 627.679 )
+z_index = 20
+
+[node name="Enemy" parent="Node/Caster" instance=ExtResource( 33 )]
+position = Vector2( 97.0715, 388.346 )
+
+[node name="Enemy" parent="Node/Caster/Enemy" instance=ExtResource( 33 )]
+position = Vector2( 738.389, -15.8835 )
+
+[node name="Caster" parent="Node/Caster/Enemy/Enemy" instance=ExtResource( 32 )]
+position = Vector2( 204.144, -394.398 )
+
+[node name="Caster" parent="." instance=ExtResource( 34 )]
+position = Vector2( 14564.5, 638.378 )
+
+[node name="Caster" parent="Caster" instance=ExtResource( 32 )]
+position = Vector2( -5217.91, -311.608 )
+
+[node name="Enemy" parent="Caster" instance=ExtResource( 33 )]
+position = Vector2( -3444.17, 386.542 )
+
+[node name="Enemy2" parent="Caster" instance=ExtResource( 33 )]
+position = Vector2( -2870.3, 373.328 )
+
+[node name="Caster2" parent="Caster" instance=ExtResource( 32 )]
+position = Vector2( -2370.05, 231.746 )
 [connection signal="timeout" from="Player/dashTimer" to="Player" method="_on_dashTimer_timeout"]
 [connection signal="timeout" from="Player/dashCooldownTimer" to="Player" method="_on_dashCooldownTimer_timeout"]
 [connection signal="timeout" from="Player/knockedBackTimer" to="Player" method="_on_knockedBackTimer_timeout"]
