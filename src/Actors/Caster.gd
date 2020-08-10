@@ -10,7 +10,8 @@ const bullet = preload("res://src/Actors/CasterProjectile.tscn")
 var stunned = false
 var stunTime = 0.4
 var knockBackTimer = Timer.new()
-var knockBackVector = Vector2(600, -600)
+var knockBackVector = Vector2(400, -400)
+var knockback = Vector2.ZERO
 
 func _process(delta):
 	if is_instance_valid( player ):
@@ -21,6 +22,10 @@ func _process(delta):
 		if abs(self.global_transform.origin.x - player.global_transform.origin.x) > 400 and can_fire:
 			timer.start()
 			can_fire = false
+			
+func _physics_process(delta):
+	knockback = knockback.move_toward(Vector2.ZERO, 60 * delta)
+	knockback = move_and_slide(knockback)
 	
 func fire():
 	can_fire = true
@@ -54,10 +59,10 @@ func _on_CasterHitbox_area_entered(area):
 	anim_player.play("damage")
 	print("CASTER DAMAGED")
 	
-	_velocity = knockBackVector
-	if self.global_transform.origin.x < player.global_transform.origin.x:
-		_velocity.x *= -1
-	knockBackTimer.start()
+	if global.get("player").global_position.x - self.global_position.x > 0:
+		knockback = Vector2.LEFT * 150
+	else:
+		knockback = Vector2.RIGHT * 150
 	
 	if health == 0:
 		print("CASTER DIED")
